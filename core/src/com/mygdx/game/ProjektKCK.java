@@ -11,7 +11,6 @@ public class ProjektKCK extends Game {
 	
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
 		
 	}
 
