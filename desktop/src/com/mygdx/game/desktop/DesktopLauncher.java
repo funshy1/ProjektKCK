@@ -7,6 +7,11 @@ import com.mygdx.game.ProjektKCK;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		
+		config.height = ProjektKCK.HEIGHT;
+		config.width = ProjektKCK.WIDTH;
+		config.resizable = false;
+		config.title = ProjektKCK.GameName;
 		new LwjglApplication(new ProjektKCK(), config);
 	}
 }
