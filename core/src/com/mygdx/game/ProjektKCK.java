@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.screens.MenuScreen;
 
 public class ProjektKCK extends Game {
 	
@@ -11,7 +12,7 @@ public class ProjektKCK extends Game {
 	
 	@Override
 	public void create() {
-		
+		this.setScreen(new MenuScreen(this));
 	}
 
 }
