@@ -17,17 +17,22 @@ public class Console {
 	///////////////////////////////////////////////////////////////
 	///////OBJECT.GetText RETURNS LAST STRING IN CONSOLE///////////
 	///////////////////////////////////////////////////////////////
-
+	private String[] TableOfStrings;
 	private String LastSentenceInConsole;
 	private TextFieldStyle textFieldStyle;
 	private BitmapFont bitmapFont;
 	public TextField textField;
+	public boolean PhraseEntered = false;
+	public int countIN = 0;
+	public int countOUT = 0;
 
 	public Console( int WIDTH , float X , float Y, boolean Debug ) {
 		bitMapFontInit();
 		textFieldStyleInit();
 		textFieldInit( WIDTH , X , Y , Debug );
 		setListener();
+		TableOfStrings = new String[100];
+		
 	}
 
 	public String GetText() {
@@ -40,11 +45,52 @@ public class Console {
 			public boolean keyUp(InputEvent event, int keycode) {
 
 				if (keycode == Input.Keys.ENTER) {
+					
 					textField.cut();
 					LastSentenceInConsole = textField.getText();
+					TableOfStrings[countIN] = textField.getText();
+					countIN++;
+					
+					if (countIN>99) countIN = 0;
+					
+					PhraseEntered = true;
 					textField.selectAll();
 					textField.cut();
+					countOUT = countIN;
 				}
+				return false;
+			}
+		});
+		
+		
+		textField.addListener(new InputListener() {
+			@Override
+			public boolean keyUp(InputEvent event, int keycode)
+			{  if (keycode == Input.Keys.UP) {
+				if (countOUT-1 >=0) countOUT--;
+				
+				if (keycode == Input.Keys.UP) {
+					textField.setText(TableOfStrings[countOUT]);
+					textField.setCursorPosition(TableOfStrings[countOUT].length());
+				}
+				
+			}
+				return false;
+			}
+		});
+		
+		
+		textField.addListener(new InputListener() {
+			@Override
+			public boolean keyUp(InputEvent event, int keycode)
+			{  if (keycode == Input.Keys.DOWN) {
+				if (countOUT+1 < countIN) countOUT++;
+				
+				if (keycode == Input.Keys.DOWN) {
+					textField.setText(TableOfStrings[countOUT]);
+					textField.setCursorPosition(TableOfStrings[countOUT].length());
+				}
+			}
 				return false;
 			}
 		});
