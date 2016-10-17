@@ -45,11 +45,10 @@ public class Console {
 			public boolean keyUp(InputEvent event, int keycode) {
 
 				if (keycode == Input.Keys.ENTER) {
-					if (textField.getText().length()>0) {
 					textField.cut();
-					LastSentenceInConsole = textField.getText();
-					TableOfStrings[countIN] = textField.getText();
-					countIN++;
+					if (textField.getText().length()>0) LastSentenceInConsole = textField.getText();
+					if (textField.getText().length()>0) TableOfStrings[countIN] = textField.getText();
+					if (textField.getText().length()>0) countIN++;
 					
 					if (countIN>99) countIN = 0;
 					
@@ -57,7 +56,7 @@ public class Console {
 					textField.selectAll();
 					textField.cut();
 					countOUT = countIN;
-				}
+				
 				}
 				return false;
 			}
