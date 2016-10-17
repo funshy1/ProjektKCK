@@ -45,7 +45,7 @@ public class Console {
 			public boolean keyUp(InputEvent event, int keycode) {
 
 				if (keycode == Input.Keys.ENTER) {
-					
+					if (textField.getText().length()>0) {
 					textField.cut();
 					LastSentenceInConsole = textField.getText();
 					TableOfStrings[countIN] = textField.getText();
@@ -57,6 +57,7 @@ public class Console {
 					textField.selectAll();
 					textField.cut();
 					countOUT = countIN;
+				}
 				}
 				return false;
 			}
