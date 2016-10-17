@@ -112,7 +112,7 @@ public class Console {
 
 	public void textFieldInit( int WIDTH, float X , float Y , boolean Debug ) {
 		textField = new TextField("", textFieldStyle);
-		textField.setMessageText("...Wpisz co mam zrobic...");
+		textField.setMessageText("Wpisz polecenie");
 		textField.setWidth(WIDTH);
 		textField.setX(X);
 		textField.setY(Y);
