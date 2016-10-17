@@ -1,21 +1,18 @@
 package com.mygdx.screens;
 
-import com.mygdx.actors.Actors;
 import com.mygdx.game.ProjektKCK;
 import com.mygdx.ingameConsole.Console;
-public class MenuScreen extends AbstractScreen{
-	
-	private Actors bg;
+
+public class GameplayScreen extends AbstractScreen {
+
 	private Console console;
-	public MenuScreen(ProjektKCK game) {
+	public GameplayScreen(ProjektKCK game) {
 		super(game);
 		create();
 	}
 	
 	public void create() {
-		console = new Console(600,225,250,false);
-		bg = new Actors(0,0,"bg.jpg");
-		stage.addActor(bg.image);
+		console = new Console(600,225,50,false);
 		stage.addActor(console.textField);
 		stage.act();
 		
@@ -24,10 +21,6 @@ public class MenuScreen extends AbstractScreen{
 	@Override
 	public void render(float delta) {
 		super.render(delta);
-		if(console.PhraseEntered == true){
-			command(console.GetText());
-			console.PhraseEntered = false;
-		}
 		stage.act();
 		spriteBatch.begin();
 		stage.draw();
@@ -41,8 +34,7 @@ public class MenuScreen extends AbstractScreen{
 		// TODO Auto-generated method stub
 		
 	}
-	public void command(String income){
-		if(income.equals("Rozpocznij")) game.setScreen(new GameplayScreen(game));
-		
-	}
+
+
+
 }

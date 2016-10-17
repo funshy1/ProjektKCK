@@ -26,12 +26,13 @@ public class Console {
 	public int countIN = 0;
 	public int countOUT = 0;
 
+
 	public Console( int WIDTH , float X , float Y, boolean Debug ) {
 		bitMapFontInit();
 		textFieldStyleInit();
 		textFieldInit( WIDTH , X , Y , Debug );
 		setListener();
-		textField.setHeight(100);
+		textField.setScale(100);
 		TableOfStrings = new String[100];
 		
 	}
@@ -124,4 +125,11 @@ public class Console {
 	public void bitMapFontInit() {
 		bitmapFont = new BitmapFont();
 	}
+	
+
+	
+	
+	
+	
+	
 }
