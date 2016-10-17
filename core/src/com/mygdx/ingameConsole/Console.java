@@ -31,6 +31,7 @@ public class Console {
 		textFieldStyleInit();
 		textFieldInit( WIDTH , X , Y , Debug );
 		setListener();
+		textField.setHeight(100);
 		TableOfStrings = new String[100];
 		
 	}
