@@ -28,6 +28,7 @@ public abstract class AbstractScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false,ProjektKCK.WIDTH,ProjektKCK.HEIGHT);
 		camera.update();
+		
 	}
 
 	public void show (){
