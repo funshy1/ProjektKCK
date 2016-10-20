@@ -10,6 +10,12 @@ import com.mygdx.ingameConsole.Console;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 
+/*Czcionka*/
+
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+
+
 public class Console {
 	///////////////////////////////////////////////////////////////
 	///////YOU ONLY NEED TO CREATE OBJECT OF THIS CLASS////////////
@@ -120,7 +126,22 @@ public class Console {
 		textField.setClipboard(Gdx.app.getClipboard());
 	}
 
+	private BitmapFont font;
+
 	public void bitMapFontInit() {
 		bitmapFont = new BitmapFont();
+		setFontToTimesNewRoman();
+		bitmapFont = font;
 	}
+	
+	
+	public void setFontToTimesNewRoman()
+	{
+		font = new BitmapFont();
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Times_New_Roman_Normal.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		parameter.size = 60;
+		font = generator.generateFont(parameter);
+	}
+
 }
