@@ -12,9 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 
 /* Rzeczy powiązane z czcionka */
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
@@ -153,7 +150,7 @@ public class Console {
 	      bitmapFont = new BitmapFont();
 	      FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Times_New_Roman_Normal.ttf"));
 	      FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-	      parameter.size = 60;
+	      parameter.size = 30;
 	      font = generator.generateFont(parameter);
 	}
 
