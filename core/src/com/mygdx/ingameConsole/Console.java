@@ -4,11 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.mygdx.ingameConsole.Console;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+
+/* Rzeczy powiązane z czcionka */
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 public class Console {
 	///////////////////////////////////////////////////////////////
@@ -25,16 +33,30 @@ public class Console {
 	public boolean PhraseEntered = false;
 	public int countIN = 0;
 	public int countOUT = 0;
-
+	
+	/*To do czcionki*/
+	private SpriteBatch batch;
+	private BitmapFont font;
+	/*
+	public void setFontToTimesNewRoman(){
+	      batch = new SpriteBatch();
+	      font = new BitmapFont();
+	      FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Times_New_Roman_Normal.ttf"));
+	      FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+	      parameter.size = 60;
+	      font = generator.generateFont(parameter);
+	}
+	
+	*/
 	public Console( int WIDTH , float X , float Y, boolean Debug ) {
 		bitMapFontInit();
 		textFieldStyleInit();
 		textFieldInit( WIDTH , X , Y , Debug );
 		setListener();
 		TableOfStrings = new String[100];
-		
 	}
-
+	
+	
 	public String GetText() {
 		return LastSentenceInConsole;
 	}
@@ -122,5 +144,17 @@ public class Console {
 
 	public void bitMapFontInit() {
 		bitmapFont = new BitmapFont();
+		setFontToTimesNewRoman();
+		bitmapFont = font;
 	}
+
+	public void setFontToTimesNewRoman(){
+	      batch = new SpriteBatch();
+	      bitmapFont = new BitmapFont();
+	      FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Times_New_Roman_Normal.ttf"));
+	      FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+	      parameter.size = 60;
+	      font = generator.generateFont(parameter);
+	}
+
 }

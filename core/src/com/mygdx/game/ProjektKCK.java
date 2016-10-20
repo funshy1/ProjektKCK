@@ -10,6 +10,9 @@ public class ProjektKCK extends Game {
 	
 	public static String GameName = "ProjektKCK"; //nazwa gry
 	
+	
+	
+	
 	@Override
 	public void create() {
 		this.setScreen(new MenuScreen(this));
