@@ -9,27 +9,51 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.mygdx.ingameConsole.Console;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+///////YOU ONLY NEED TO CREATE OBJECT OF THIS CLASS////////////
+///////THEN ADD OBJECT.textFieldStyle TO YOUR STAGE////////////
+///////////////////////////////////////////////////////////////
+///////OBJECT.GetText RETURNS LAST STRING IN CONSOLE///////////
+///////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
 
 public class Console {
-	///////////////////////////////////////////////////////////////
-	///////YOU ONLY NEED TO CREATE OBJECT OF THIS CLASS////////////
-	///////THEN ADD OBJECT.textFieldStyle TO YOUR STAGE////////////
-	///////////////////////////////////////////////////////////////
-	///////OBJECT.GetText RETURNS LAST STRING IN CONSOLE///////////
-	///////////////////////////////////////////////////////////////
-	private String[] TableOfStrings;
-	private String LastSentenceInConsole;
-	private TextFieldStyle textFieldStyle;
+	private String[] TableOfStrings;   //tablica do przechowywania wpisanych stringow
+	private String LastSentenceInConsole;  //ostatni string w konsoli
+	private TextFieldStyle textFieldStyle; 
 	private BitmapFont bitmapFont;
 	public TextField textField;
-	public boolean PhraseEntered = false;
-	public int countIN = 0;
-	public int countOUT = 0;
-
-	public Console( int WIDTH , float X , float Y, boolean Debug ) {
-		bitMapFontInit();
+	
+	public boolean PhraseEntered = false;   //zmienna ktora stwierdza czy cos zostalo wpisane
+	private int countIN = 0;   //licznik do tablicy aby wyswietlalo ostatnie wpisane stringi
+	private int countOUT = 0;  // to samo co up
+	
+	private FreeTypeFontGenerator generator;
+	private FreeTypeFontParameter parameter;
+	
+	
+	public Console( int WIDTH , float X , float Y, int size) {
+		bitMapFontInit(size);
 		textFieldStyleInit();
-		textFieldInit( WIDTH , X , Y , Debug );
+		textFieldInit( WIDTH , X , Y);
 		setListener();
 		TableOfStrings = new String[100];
 		
@@ -110,17 +134,27 @@ public class Console {
 		textFieldStyle.font = bitmapFont;
 	}
 
-	public void textFieldInit( int WIDTH, float X , float Y , boolean Debug ) {
+	public void textFieldInit( int WIDTH, float X , float Y ) {
 		textField = new TextField("", textFieldStyle);
 		textField.setMessageText("...Wpisz co mam zrobic...");
 		textField.setWidth(WIDTH);
 		textField.setX(X);
 		textField.setY(Y);
-		textField.setDebug(Debug);
 		textField.setClipboard(Gdx.app.getClipboard());
 	}
+	
 
-	public void bitMapFontInit() {
+	public void bitMapFontInit(int size) {
 		bitmapFont = new BitmapFont();
+		generator = new FreeTypeFontGenerator(Gdx.files.internal("TimesNewRoman.ttf"));
+		parameter = new FreeTypeFontParameter();
+		parameter.size = size;
+		bitmapFont = generator.generateFont(parameter);
+		generator.dispose();
 	}
+	
+	public void setPosition(float X, float Y) {
+		textField.setPosition(X, Y);
+	}
+
 }
