@@ -13,7 +13,7 @@ public abstract class AbstractScreen implements Screen {
 	
 	protected ProjektKCK game;
 	protected Stage stage;
-	private OrthographicCamera camera;
+	protected OrthographicCamera camera;
 	protected SpriteBatch spriteBatch;
 	
 	public AbstractScreen(ProjektKCK game) {
@@ -26,7 +26,7 @@ public abstract class AbstractScreen implements Screen {
 	
 	private void createCamera() {
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false,ProjektKCK.WIDTH,ProjektKCK.HEIGHT);
+		camera.setToOrtho(false,6000,6000);  //6000x6000 rozmiar naszej mapy
 		camera.update();
 		
 	}
