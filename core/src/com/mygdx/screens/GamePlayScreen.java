@@ -1,6 +1,7 @@
 package com.mygdx.screens;
 
 import com.mygdx.game.ProjektKCK;
+import com.mygdx.game.actors.Actors;
 import com.mygdx.game.actors.MainCharacter;
 import com.mygdx.ingameConsole.Console;
 
@@ -9,6 +10,7 @@ public class GamePlayScreen extends AbstractScreen{
 
 	private Console console;
 	private MainCharacter mainCharacter;
+	public Actors mapa;
 
 	public GamePlayScreen(ProjektKCK game) {
 		super(game);
@@ -16,11 +18,10 @@ public class GamePlayScreen extends AbstractScreen{
 	}
 
 	public void create() {
-		
-		mainCharacter = new MainCharacter(3000, 3000, "badlogic.jpg");
-		console = new Console(600, mainCharacter.image.getX()-150, mainCharacter.image.getY()-200, 40);
-		camera.position.x = mainCharacter.image.getX()+ mainCharacter.image.getWidth()/2;
-		camera.position.y = mainCharacter.image.getY()+ mainCharacter.image.getHeight()/2;
+		mapa = new Actors(0, 0, "MapkaAlpha.png");
+		mainCharacter = new MainCharacter(0, 0, "Roman.png");
+		console = new Console(600, 50, 50, 40);
+		stage.addActor(mapa.image);
 		stage.addActor(mainCharacter.image);
 		stage.addActor(console.textField);
 		stage.act();
@@ -30,7 +31,6 @@ public class GamePlayScreen extends AbstractScreen{
 	public void render(float delta) {
 		super.render(delta);
 		GetCommendAndDoIt();
-		cameraUpdate();
 		mainCharacter.howLongGoingIncreaseAndRespawn(); //ruch naszej glownej postaci
 		stage.act();
 		spriteBatch.begin();
@@ -54,19 +54,14 @@ public class GamePlayScreen extends AbstractScreen{
 	public void GetCommendAndDoIt() {
 		if (console.PhraseEntered == true) {
 			ConsoleCommends(console.GetText());
-			if (mainCharacter.howLongGoing >41) mainCharacter.howLongGoing = 0;
+			if (mainCharacter.howLongGoing >51) mainCharacter.howLongGoing = 0;
 		}
 		
-		if (mainCharacter.howLongGoing>40)
+		if (mainCharacter.howLongGoing>50)
 			console.PhraseEntered = false;
 		
 	}
 	
-	public void cameraUpdate() {
-		camera.position.x = mainCharacter.image.getX()+ mainCharacter.image.getWidth()/2;
-		camera.position.y = mainCharacter.image.getY()+ mainCharacter.image.getHeight()/2;
-		console.setPosition(mainCharacter.image.getX()-150, mainCharacter.image.getY()-200);
-	}
 
 }
 

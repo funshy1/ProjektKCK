@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 
 public class MainCharacter extends Actors {
 
-	private float speed = 200.0f; // 10 pixels per second
+	private float speed = 32.0f; // 10 pixels per second
 	public int howLongGoing = 0;
 
 	public MainCharacter(int X, int Y, String sciezka) {
