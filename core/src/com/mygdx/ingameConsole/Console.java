@@ -150,7 +150,7 @@ public class Console {
 	}
 	
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	private BitmapFont font;
 
 	public void bitMapFontInit() {
@@ -167,7 +167,8 @@ public class Console {
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 60;
 		font = generator.generateFont(parameter);
-=======
+	}
+//=======
 	public void bitMapFontInit(int size) {
 		bitmapFont = new BitmapFont();
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("TimesNewRoman.ttf"));
@@ -179,7 +180,7 @@ public class Console {
 	
 	public void setPosition(float X, float Y) {
 		textField.setPosition(X, Y);
->>>>>>> refs/remotes/origin/master
+//>>>>>>> refs/remotes/origin/master
 	}
 
 }
