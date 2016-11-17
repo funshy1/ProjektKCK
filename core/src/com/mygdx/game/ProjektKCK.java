@@ -5,11 +5,10 @@ import com.mygdx.screens.MenuScreen;
 
 public class ProjektKCK extends Game {
 	
-	public static int WIDTH = 1024;   // ustawiamy statyczne zmienne ktore odpowiadaja
-	public static int HEIGHT = 768;   // za rozdzielczosc gry
+	public static int WIDTH = 512;   // ustawiamy statyczne zmienne ktore odpowiadaja
+	public static int HEIGHT = 512;   // za rozdzielczosc gry
 	
 	public static String GameName = "ProjektKCK"; //nazwa gry
-
 	
 	@Override
 	public void create() {

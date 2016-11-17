@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 
 public class MainCharacter extends Actors {
 
-	private float speed = 32.0f; // 32 pixels per second
+	private float speed = 32.0f; // 10 pixels per second
+	public int howLongGoing = 0;
+
 	public MainCharacter(int X, int Y, String sciezka) {
 		super(X, Y, sciezka);
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public void move(String gdzie) {
@@ -24,11 +26,12 @@ public class MainCharacter extends Actors {
 
 			if (gdzie.equals("w prawo"))
 				image.setX(image.getX() + Gdx.graphics.getDeltaTime() * speed);
-	}
-	public void updateActorBounds() {
-		bounds.set(image.getX(), image.getY(), 32, 32);
 		
+		if (howLongGoing > 999)
+			howLongGoing = 990;
 	}
 
-
+	public void howLongGoingIncreaseAndRespawn() {
+		howLongGoing++;
+	}
 }
