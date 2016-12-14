@@ -1,5 +1,7 @@
 package com.mygdx.game.actors;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
@@ -9,13 +11,15 @@ import com.mygdx.game.Cloud.Statistics;
 import com.mygdx.game.Cloud.cloud;
 
 public class MainCharacter extends Actors {
-	private float delay = (float) 0.05;   //ile opoznienia miedzy ruchami
+	private float delay = (float) 0.005;   //ile opoznienia miedzy ruchami
 	private int MoveCountPixels = 32;     //o ile pixeli sie przesunie w ciagu calego 1 cyklu ruchu
 	public Rectangle TryBounds;           //koordynaty ktore sa o krok do przodu przed glowna postacia
 	private cloud Cloud;                  //chatbox
-	private Statistics[] statistics;      //tablica[4] statystyk 
+	public Statistics[] statistics;      //tablica[4] statystyk 
 	private Stage stage;                  
 	public boolean overlaptrue = false;   //flaga do kolizji
+	
+	int ruch = 0;
 
 	public MainCharacter(int X, int Y, String sciezka, Stage stage) {
 		super(X, Y, sciezka);
@@ -24,6 +28,8 @@ public class MainCharacter extends Actors {
 	}
 
 	public void move(String gdzie, AbstractButton[] CantStand, int iloscElem) {
+		
+
 		
 		overlaptrue = false;  //flage ustawiamy na nie bo glowna postac nie ma kolizji
 		
@@ -49,6 +55,9 @@ public class MainCharacter extends Actors {
 						}, 3);
 					} else {
 						image.setY(image.getY() + 1);    //w przeciwnym wypadku idz o 1 pixel wyzej
+						changePicture("CharacterMovement\\walking n000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
 						updateActorBounds();
 					}
 				}
@@ -78,6 +87,10 @@ public class MainCharacter extends Actors {
 						}, 3);
 					} else {
 						image.setY(image.getY() - 1);
+						changePicture("CharacterMovement\\walking s000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
+
 						updateActorBounds();
 					}
 				}
@@ -106,6 +119,9 @@ public class MainCharacter extends Actors {
 						}, 3);
 					} else {
 						image.setX(image.getX() - 1);
+						changePicture("CharacterMovement\\walking w000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
 						updateActorBounds();
 					}
 				}
@@ -134,6 +150,9 @@ public class MainCharacter extends Actors {
 						}, 3);
 					} else {
 						image.setX(image.getX() + 1);
+						changePicture("CharacterMovement\\walking e000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
 						updateActorBounds();
 					}
 				}
@@ -143,8 +162,8 @@ public class MainCharacter extends Actors {
 	}
 
 	public void updateActorBounds() {
-		bounds.set(image.getX(), image.getY(), 32, 32);
-		Cloud.setPosition(bounds.getX() + 35, bounds.getY() + 20);
+		bounds.set(image.getX()+28, image.getY()+19, 44, 56);
+		Cloud.setPosition(bounds.getX()+40 + 35, bounds.getY() +19 + 44);
 	}
 
 	public void updateStatistics() {
@@ -158,17 +177,27 @@ public class MainCharacter extends Actors {
 		TryBounds = new Rectangle();
 		Cloud = new cloud(50, X + 35, Y + 20);
 		statistics = new Statistics[4];
-		statistics[0] = new Statistics(10, 135, 688);
+		statistics[0] = new Statistics(10, 0, 0);
 		statistics[0].textField.setMessageText(statistics[0].getStatistic());
-		statistics[1] = new Statistics(10, 165, 688);
+		statistics[1] = new Statistics(10, 0, 0);
 		statistics[1].textField.setMessageText(statistics[1].getStatistic());
-		statistics[2] = new Statistics(10, 193, 688);
+		statistics[2] = new Statistics(10, 0, 0);
 		statistics[2].textField.setMessageText(statistics[2].getStatistic());
-		statistics[3] = new Statistics(10, 223, 688);
+		statistics[3] = new Statistics(10, 0, 0);
 		statistics[3].textField.setMessageText(statistics[3].getStatistic());
-		stage.addActor(statistics[0].textField);
-		stage.addActor(statistics[1].textField);
-		stage.addActor(statistics[2].textField);
-		stage.addActor(statistics[3].textField);
+		bounds.set(image.getX()+32, image.getY()+20, 32, 32);
+	}
+	
+	
+	void changePicture(String sciezka) {
+		texture = new Texture(Gdx.files.internal(sciezka));
+		region.setRegion(texture);
+
+	}
+	public void statsPositionUpdate() {
+		statistics[0].setPosition(image.getX()-335, image.getY()+312);
+		statistics[1].setPosition(image.getX()-305, image.getY()+312);
+		statistics[2].setPosition(image.getX()-277, image.getY()+312);
+		statistics[3].setPosition(image.getX()-247, image.getY()+312);
 	}
 }
