@@ -1,0 +1,1 @@
+1. Podlaczyc gramatyke do parsera. - Ewentualnie podzielic prawa strone tablicy z zasadami na dwie czesci.

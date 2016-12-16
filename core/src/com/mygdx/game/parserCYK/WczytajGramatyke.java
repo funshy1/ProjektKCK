@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.w3c.dom.ls.LSException;
-
 public class WczytajGramatyke{
 	public static void Czytaj(ZasadaGramatyki[] tab,int linie){
 		FileReader plik = null;
