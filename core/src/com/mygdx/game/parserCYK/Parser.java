@@ -1,9 +1,12 @@
 package com.mygdx.game.parserCYK;
 
-import java.io.*;  
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Parser{
-
 	public static String CheckType(String a)
 	{
 		String temp; temp = a;

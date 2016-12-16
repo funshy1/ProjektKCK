@@ -1,0 +1,17 @@
+Z_Idz -> czasownik1 kierunek
+Z_Idz -> kierunek czasownik1
+czasownik1 -> idz
+kierunek -> spojnik1 orientacja1
+kierunek -> spojnik2 orientacja2
+kierunek -> spojnik3 orientacja3
+spojnik1 -> w
+spojnik2 -> do
+spojnik3 -> przed
+orientacja1 -> prawo
+orientacja1 -> lewo
+orientacja1 -> dol
+orientacja1 -> gore
+orientacja2 -> gory
+orientacja2 -> tylu
+orientacja2 -> przodu
+orientacja3 -> siebie
