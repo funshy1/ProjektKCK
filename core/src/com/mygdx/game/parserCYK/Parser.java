@@ -7,8 +7,146 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Parser{
+	static int Tlines;
+	static int NTlines;
+	static ZasadaGramatykidlaNT[] nttab;
+	static ZasadaGramatyki[] ttab;
+	
+	public Parser() throws IOException{
+		
+		BufferedReader reader = new BufferedReader(new FileReader("..\\core\\assets\\Grammar\\gramatyka.txt"));
+		String linia;
+		while((linia = reader.readLine()) != null){
+			String[] wynikm = linia.split(" -> ");
+			if(wynikm[1].contains(" ")){
+				Parser.NTlines++;
+			}
+			else{
+				Parser.Tlines++;
+			}
+		}
+		reader.close();
+		Parser.nttab = new ZasadaGramatykidlaNT[NTlines];
+		Parser.ttab = new ZasadaGramatyki[Tlines];
+	}
+	
+	
+	/*
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 *																		 *
+	 * 						WCZYTYWANIE GRAMATYKI						     *
+	 * 																		 *
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 */
+	
+	
+	public static void Czytaj(int linie){
+		FileReader plik = null;
+		String linia = "";
+	
+		//System.out.println("Jestem w: ");
+		//System.out.println(Parser.class.getProtectionDomain().getCodeSource().getLocation());
+		
+		//Otworz plik
+		try {
+			plik = new FileReader("..\\core\\assets\\Grammar\\gramatyka.txt");
+		}catch (FileNotFoundException e){
+			System.out.println("Nie znaleziono pliku.");
+			System.exit(1);
+		}
+
+		BufferedReader buff = new BufferedReader(plik);
+		//czytaj linie
+		try {
+			int i=0;
+			int ntc=0,tc=0;
+			while((linia = buff.readLine()) != null){
+		//Stworzyc dwie tablice jedna dla terminali druga dla nieterminali
+				String fraza; 
+				fraza = linia;
+				String[] wynik = fraza.split(" -> ");
+				
+				if(wynik[1].contains(" ")){
+					nttab[ntc] = new ZasadaGramatykidlaNT();
+					String[] wynik2 = wynik[1].split(" ");
+					nttab[ntc].UstawLS(wynik[0]);
+					nttab[ntc].UstawPS1(wynik2[0]);
+					nttab[ntc].UstawPS2(wynik2[1]);
+					ntc++;
+				}
+				else{
+					ttab[tc] = new ZasadaGramatyki();
+					ttab[tc].UstawLSPS(wynik[0], wynik[1]);
+					tc++;
+				}
+				i++;
+				if(i==linie)
+					break;
+			}
+		}catch(IOException e){
+			System.out.println("blad odczytu");
+			System.exit(2);
+		}
+		try{
+			plik.close();
+		}catch(IOException e){
+			System.out.println("blad zamykania pliku");
+			System.exit(3);
+		}
+	}
+	public static void WyswietlGramatyke(){
+		System.out.println("Terminale: ");
+		for(int i=0;i<ttab.length;i++){
+			System.out.println("Lewa strona: " + ttab[i].PodajLS());
+			System.out.println("Prawa strona: " + ttab[i].PodajPS());
+		}
+		System.out.println("Nieterminale: ");
+		for(int j=0;j<nttab.length;j++){
+			System.out.println("Lewa strona: " + nttab[j].PodajLS());
+			System.out.println("Prawa strona: " + nttab[j].PodajPS1() + " " + nttab[j].PodajPS2());
+		}
+	
+	}
+	/*
+	public static void PoliczZasady() throws IOException{
+		//Licze ile jest zasad w pliku, grupuje po typie (Terminale, Nieterminale)
+		BufferedReader reader = new BufferedReader(new FileReader("..\\core\\assets\\Grammar\\gramatyka.txt"));
+		String linia;
+		while((linia = reader.readLine()) != null){
+			String[] wynikm = linia.split(" -> ");
+			if(wynikm[1].contains(" ")){
+				NTlines++;
+			}
+			else{
+				Tlines++;
+			}
+		}
+		
+		reader.close();
+	}
+	
+	*/
+	public ZasadaGramatyki[] PodajTabliceTerminali(){
+	    return(ttab);   
+	}
+	public ZasadaGramatykidlaNT[] PodajTabliceNieterminali(){
+        return(nttab);   
+	}
+	
+	
+	/*
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 *																		 *
+	 * 								PARSER									 *
+	 * 																		 *
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 */
+	
+	
 	public static String CheckType(String a)
 	{
+		
+		
 		String temp; temp = a;
 		if (	
 				temp.contains("A") ||
@@ -22,6 +160,20 @@ public class Parser{
 		else 
 			{temp = "B";}
 		return temp;
+		
+		
+		//Przeleciec tablice z terminalami i sprawdzic czy slowo sie znajudje
+		//w ktorejs z zasad
+		//Temp to slowo x ze zdania (np. dla x=0 slowo z 'Ala ma kota' to Ala)
+		/*
+		String temp; temp = a;
+		if(temp.equals(
+				for(int i=0;i<tarr.length;i++){
+					
+				}
+				))
+		
+		*/
 	}
 
 	
@@ -100,10 +252,14 @@ public class Parser{
 		}
 		return ExitString;
 	}
-	
-public static void main(String args[])
-	{  
 
+
+public static void main(String args[]) throws IOException{  
+		//Wczytanie gramatyki
+		new Parser();
+		Parser.Czytaj(Tlines+NTlines);
+		Parser.WyswietlGramatyke();
+		
 		//Wprowadzanie zdania
 		String phrase; phrase = ""; System.out.println("Input phrase");
 		InputStreamReader isr = new InputStreamReader(System.in);
@@ -124,7 +280,7 @@ public static void main(String args[])
 				System.out.println(result[x]);
 			}
 
-		//Stworzenie tablicy rozmiaru 5x5
+		//Stworzenie tablicy o wymiarch x na x, gdzie x to ilosc slow w zdaniu
 		String Symbole[][] = new String[result.length][result.length];
 		for (int i = 0; i <result.length; i++)
 			{
