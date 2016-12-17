@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class WczytajGramatyke{
-	public static void Czytaj(ZasadaGramatyki[] tab,int linie){
+	public static void Czytaj(ZasadaGramatyki[] ttab,ZasadaGramatykidlaNT[] nttab,int linie){
 		FileReader plik = null;
 		String linia = "";
 	
@@ -25,12 +25,26 @@ public class WczytajGramatyke{
 		//czytaj linie
 		try {
 			int i=0;
+			int ntc=0,tc=0;
 			while((linia = buff.readLine()) != null){
+		//Stworzyc dwie tablice jedna dla terminali druga dla nieterminali
 				String fraza; 
 				fraza = linia;
 				String[] wynik = fraza.split(" -> ");
-				tab[i] = new ZasadaGramatyki();
-				tab[i].UstawLSPS(wynik[0], wynik[1]);
+				
+				if(wynik[1].contains(" ")){
+					nttab[ntc] = new ZasadaGramatykidlaNT();
+					String[] wynik2 = wynik[1].split(" ");
+					nttab[ntc].UstawLS(wynik[0]);
+					nttab[ntc].UstawPS1(wynik2[0]);
+					nttab[ntc].UstawPS2(wynik2[1]);
+					ntc++;
+				}
+				else{
+					ttab[tc] = new ZasadaGramatyki();
+					ttab[tc].UstawLSPS(wynik[0], wynik[1]);
+					tc++;
+				}
 				i++;
 				if(i==linie)
 					break;
@@ -46,24 +60,39 @@ public class WczytajGramatyke{
 			System.exit(3);
 		}
 	}
-	public static void WyswietlGramatyke(ZasadaGramatyki[] arr){
-		for(int i=0;i<arr.length;i++){
-			System.out.println("Lewa strona: " + arr[i].PodajLS());
-			System.out.println("Prawa strona: " + arr[i].PodajPS());
+	public static void WyswietlGramatyke(ZasadaGramatyki[] tarr,ZasadaGramatykidlaNT[] ntarr){
+		System.out.println("Terminale: ");
+		for(int i=0;i<tarr.length;i++){
+			System.out.println("Lewa strona: " + tarr[i].PodajLS());
+			System.out.println("Prawa strona: " + tarr[i].PodajPS());
+		}
+		System.out.println("Nieterminale: ");
+		for(int j=0;j<ntarr.length;j++){
+			System.out.println("Lewa strona: " + ntarr[j].PodajLS());
+			System.out.println("Prawa strona: " + ntarr[j].PodajPS1() + " " + ntarr[j].PodajPS2());
 		}
 	
 	}
 	public static void main(String []args) throws IOException{
-		//Licze ile jest zasad w pliku
+		//Licze ile jest zasad w pliku, grupuje po typie (Terminale, Nieterminale)
 		BufferedReader reader = new BufferedReader(new FileReader("..\\core\\assets\\Grammar\\gramatyka.txt"));
-		int lines = 0;
-		while(reader.readLine() != null){ 
-			lines++;
+		int Tlines = 0,NTlines = 0;
+		String linia;
+		while((linia = reader.readLine()) != null){
+			String[] wynikm = linia.split(" -> ");
+			if(wynikm[1].contains(" ")){
+				NTlines++;
+			}
+			else{
+				Tlines++;
+			}
 		}
+		
 		reader.close();
-		//Tworze tablice o takiej wielkosci ile jest zasad w pliku
-		ZasadaGramatyki[] arr = new ZasadaGramatyki[lines];
-		Czytaj(arr,lines);
-		WyswietlGramatyke(arr);
+		//Tworze dwie tablice o wielkosciach policzonych wczesniej
+		ZasadaGramatyki[] ter = new ZasadaGramatyki[Tlines];
+		ZasadaGramatykidlaNT[] nter= new ZasadaGramatykidlaNT[NTlines];
+		Czytaj(ter,nter,Tlines+NTlines);
+		WyswietlGramatyke(ter,nter);
 	}
 }
