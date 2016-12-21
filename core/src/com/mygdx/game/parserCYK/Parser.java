@@ -146,7 +146,7 @@ public class Parser{
 	public static String CheckType(String a)
 	{
 		
-		
+		/*
 		String temp; temp = a;
 		if (	
 				temp.contains("A") ||
@@ -161,21 +161,21 @@ public class Parser{
 			{temp = "B";}
 		return temp;
 		
+		*/
 		
 		//Przeleciec tablice z terminalami i sprawdzic czy slowo sie znajudje
 		//w ktorejs z zasad
 		//Temp to slowo x ze zdania (np. dla x=0 slowo z 'Ala ma kota' to Ala)
-		/*
-		String temp; temp = a;
-		if(temp.equals(
-				for(int i=0;i<tarr.length;i++){
-					
-				}
-				))
 		
-		*/
+		String temp; temp = a;
+		for(int i=0;i<ttab.length;i++){
+			if(temp.equals(ttab[i].PodajPS())){
+				temp = ttab[i].PodajLS();
+				break;
+			}
+		}
+		return temp;
 	}
-
 	
 	public static String Przeparsuj(String tablica[][], int slowa)
 	{
@@ -183,54 +183,107 @@ public class Parser{
 		int Pole1x;	int Pole1y;	int Pole2x;	int Pole2y;	int counter;
 		koordynatX = 0; koordynatY = 0;
 		
-		//Inicjalizacja tablicy - bez tego ryzykujemy nulle w tablicy
-		for (koordynatY = 0; koordynatY<slowa; koordynatY++)
-		{
-			for (koordynatX = 1; koordynatX<slowa; koordynatX++)
-			{
-				tablica[koordynatY][koordynatX]="";
+		System.out.println("Tablica przed przeparsuj: ");
+		for(int i=0;i<slowa;i++){
+			for(int j=0;j<slowa;j++){
+				System.out.print(tablica[i][j] + " ");
 			}
+			System.out.println();
 		}
-	
 		
+		//Inicjalizacja tablicy - bez tego ryzykujemy nulle w tablicy
 		for (koordynatY = 1; koordynatY<slowa; koordynatY++)
 		{
 			for (koordynatX = 0; koordynatX<slowa; koordynatX++)
 			{
+				tablica[koordynatY][koordynatX]="N";
+			}
+		}
+		
+		System.out.println("Tablica po czyszczeniu: ");
+		for(int i=0;i<slowa;i++){
+			for(int j=0;j<slowa;j++){
+				System.out.print(tablica[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		
+		
+		for (koordynatY = 1; koordynatY<slowa; koordynatY++)
+		{
+			for (koordynatX = 1; koordynatX<slowa; koordynatX++)
+			{
 
 				if (koordynatX<=slowa-koordynatY) {
-					System.out.println("Wchodzimy w komorke " + koordynatX + koordynatY);
+					System.out.println("Komorka x: " + koordynatX  + " y: "+ koordynatY);
+					
 					Pole1x = koordynatX;
 					Pole1y = 0;
 					Pole2x = koordynatX + 1;
 					Pole2y = koordynatY - 1;
+					
+					System.out.println("Pole 1x: " + Pole1x + " w iteracji po x: " + koordynatX);
+					System.out.println("Pole 1y: " + Pole1y + " w iteracji po x: " + koordynatX);
+					System.out.println("Pole 2x: " + Pole2x + " w iteracji po x: " + koordynatX);
+					System.out.println("Pole 2y: " + Pole2y + " w iteracji po x: " + koordynatX);
 					counter = 1;
 					while (Pole1y < koordynatY && Pole2x < slowa) {
-						System.out.println(
-								"Probujemy parsowac komorke " + koordynatX + koordynatY + " po raz " + counter);
-						System.out.println("Sprawdzamy komórki " + Pole1x + Pole1y + " oraz " + Pole2x + Pole2y);
+						//System.out.println("Probujemy parsowac komorke " + koordynatX + koordynatY + " po raz " + counter);
+						//System.out.println("Sprawdzamy komórki " + Pole1x + Pole1y + " oraz " + Pole2x + Pole2y);
 
 						tablica[koordynatX][koordynatY] = SprawdzGramatyke(tablica, Pole1x, Pole1y, Pole2x, Pole2y);
 						counter++;
-						Pole1x = Pole1x;
+						//Pole1x = Pole1x;
 						Pole1y = Pole1y + 1;
 						Pole2x = Pole2x + 1;
 						Pole2y = Pole2y - 1;
 					}
-					System.out.println("W komórce " + koordynatX + koordynatY + " znajduje sie "
-							+ tablica[koordynatX][koordynatY]);
+					//System.out.println("W komórce " + koordynatX + koordynatY + " znajduje sie "
+					//		+ tablica[koordynatX][koordynatY]);
 				}
 		
 			}
 		}
 		
-		int temp; temp = slowa-1;
-		System.out.println("Zobaczmy zatem co jest w komórce " + temp + 0 + " a tam jest " + tablica[slowa-1][0]);
-		if (tablica[0][temp].contains("S"))
-			return "Zdanie jest w gramatyce";			
-		else return "Zdania nie ma w gramatyce";
+		String wynik = "";
+		
+		for(int i=0;i<slowa;i++){
+			for(int j=0;j<slowa;j++){
+				for(int g=1;g<slowa;g++){
+					for(int h=1;h<slowa;h++){
+						wynik = SprawdzGramatyke(tablica,i,j,g,h);
+						if(wynik.contains("Z"))
+							tablica[slowa-1][0] = wynik;
+					}
+				}
+			}
+		}
+		
+		System.out.println("Tablica po przeparsuj: ");
+		for(int i=0;i<slowa;i++){
+			for(int j=0;j<slowa;j++){
+				System.out.print(tablica[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<slowa;i++){
+			for(int j=0;j<slowa;j++){
+				if (tablica[i][j].contains("Z")){
+					return "Zdanie jest w gramatyce";	
+				}
+			}
+		}
+		
+	return "Zdania nie ma w gramatyce";
 	}
 	
+	
+	
+	
+	
+	/*
 	public static String SprawdzGramatyke(String tabliczka[][], int Pole1x, int Pole1y, int Pole2x, int Pole2y)
 	{
 		String ExitString = "";
@@ -249,6 +302,20 @@ public class Parser{
 			|| tabliczka[Pole1x][Pole1y]=="C" && tabliczka[Pole2x][Pole2y].contains("A"))
 		{
 			ExitString = ExitString + "S";
+		}
+		return ExitString;
+	}
+	*/
+	public static String SprawdzGramatyke(String tabliczka[][], int Pole1x, int Pole1y, int Pole2x, int Pole2y)
+	{
+		String ExitString = "";
+		//System.out.println("Sprawdzamy gramatykê");
+		
+		for(int i=0;i<nttab.length;i++){
+			if (tabliczka[Pole1y][Pole1x].contains(nttab[i].PodajPS1()) && tabliczka[Pole2y][Pole2x].contains(nttab[i].PodajPS2())){
+				ExitString = nttab[i].PodajLS();
+				break;
+			}
 		}
 		return ExitString;
 	}
@@ -284,12 +351,12 @@ public static void main(String args[]) throws IOException{
 		String Symbole[][] = new String[result.length][result.length];
 		for (int i = 0; i <result.length; i++)
 			{
-				Symbole[i][0] = CheckType(result[i]);
-				System.out.println(result[i] + " is of type " + Symbole[i][0]);
+				Symbole[0][i] = CheckType(result[i]);
+				System.out.println(result[i] + " is of type " + Symbole[0][i]);
 			}
 		
-		System.out.println("Dlugosc zdania: " + result.length);
-		System.out.println("Badany format pokazuje koordynaty XY ");
+		//System.out.println("Dlugosc zdania: " + result.length);
+		//System.out.println("Badany format pokazuje koordynaty XY ");
 		String CzyJest = Przeparsuj(Symbole,result.length);
 		System.out.println(CzyJest);
 	}

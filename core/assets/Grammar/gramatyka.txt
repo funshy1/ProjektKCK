@@ -1,9 +1,19 @@
 Z_Idz -> czasownik1 kierunek
 Z_Idz -> kierunek czasownik1
+Z_Atakuj -> czasownik2 dopelnienie_ataku
+Z_Atakuj -> dopelnienie_ataku czasownik2
 czasownik1 -> idz
+czasownik2 -> atakuj
+czasownik2 -> bij
+czasownik2 -> uderzaj
+czasownik2 -> uderz
 kierunek -> spojnik1 orientacja1
 kierunek -> spojnik2 orientacja2
 kierunek -> spojnik3 orientacja3
+dopelnienie_ataku -> bron kierunek
+dopelnienie_ataku -> kierunek bron
+bron -> mieczem
+bron -> toporem
 spojnik1 -> w
 spojnik2 -> do
 spojnik3 -> przed
