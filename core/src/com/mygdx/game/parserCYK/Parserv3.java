@@ -6,28 +6,28 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Parser{
+public class Parserv3{
 	static int Tlines;
 	static int NTlines;
 	static ZasadaGramatykidlaNT[] nttab;
 	static ZasadaGramatyki[] ttab;
 	
-	public Parser() throws IOException{
+	public Parserv3() throws IOException{
 		
 		BufferedReader reader = new BufferedReader(new FileReader("..\\core\\assets\\Grammar\\gramatyka.txt"));
 		String linia;
 		while((linia = reader.readLine()) != null){
 			String[] wynikm = linia.split(" -> ");
 			if(wynikm[1].contains(" ")){
-				Parser.NTlines++;
+				Parserv3.NTlines++;
 			}
 			else{
-				Parser.Tlines++;
+				Parserv3.Tlines++;
 			}
 		}
 		reader.close();
-		Parser.nttab = new ZasadaGramatykidlaNT[NTlines];
-		Parser.ttab = new ZasadaGramatyki[Tlines];
+		Parserv3.nttab = new ZasadaGramatykidlaNT[NTlines];
+		Parserv3.ttab = new ZasadaGramatyki[Tlines];
 	}
 	
 	
@@ -139,106 +139,71 @@ public class Parser{
 		return temp;
 	}
 	
-	public static String Przeparsuj(String tablica[][], int slowa)
+	public static String Przeparsuj(String tablica[], int slowa)
 	{
-		int koordynatX; int koordynatY;		
-		int Pole1x;	int Pole1y;	int Pole2x;	int Pole2y;	int counter;
-		koordynatX = 0; koordynatY = 0;
+		int X; int Y;		
+		int x1;	int y1;	int x2;	int y2;	int counter;
+		X = 0; Y = 0;
 		
 		
 		
 		System.out.println("Tablica przed przeparsuj: ");
-		for(int i=0;i<slowa;i++){
-			for(int j=0;j<slowa;j++){
-				System.out.print(tablica[i][j] + " ");
-			}
-			System.out.println();
+		for(int i=0;i<slowa*slowa;i++){
+				System.out.print(tablica[i] + " ");
 		}
 		
+		System.out.println(" ");
 		//Inicjalizacja tablicy - bez tego ryzykujemy nulle w tablicy
-		for (koordynatY = 1; koordynatY<slowa; koordynatY++)
-		{
-			for (koordynatX = 0; koordynatX<slowa; koordynatX++)
-			{
-				tablica[koordynatY][koordynatX]="N";
-			}
+		for (Y = slowa; Y<(slowa*slowa); Y++){
+				tablica[Y]="N";
 		}		
 		
-		for (koordynatY = 1; koordynatY<slowa; koordynatY++)
-		{
-			for (koordynatX = 1; koordynatX<slowa; koordynatX++)
-			{
-				
-				if (koordynatX<=slowa-koordynatY) {
-					
-					
-					Pole1x = koordynatX;
-					Pole1y = 0;
-					Pole2x = koordynatX + 1;
-					Pole2y = koordynatY;
-					counter = 1;
-					
-					System.out.println("Sprawdzamy komórki " + Pole1x + Pole1y + " oraz " + Pole2x + Pole2y);
-					
-					while (Pole1y < koordynatY && Pole2x < slowa) {						
-						tablica[koordynatY][koordynatX] = SprawdzGramatyke(tablica, Pole1x, Pole1y, Pole2x, Pole2y);
-						counter++;
-						//Pole1x = Pole1x;
-						Pole1y = Pole1y + 1;
-						Pole2x = Pole2x + 1;
-						Pole2y = Pole2y - 1;
-						
-						System.out.println("Pole 1x: " + Pole1x + " w iteracji po x: " + koordynatX);
-						System.out.println("Pole 1y: " + Pole1y + " w iteracji po x: " + koordynatX);
-						System.out.println("Pole 2x: " + Pole2x + " w iteracji po x: " + koordynatX);
-						System.out.println("Pole 2y: " + Pole2y + " w iteracji po x: " + koordynatX);
-						
-						
-					}
-				}
+		String wn;
+		int xt2=slowa,a=0;
 		
-			}
+		
+		for (int i = 0; i < slowa*slowa; i++){
+		    for (int j = 0; j < slowa*slowa; j++){
+		    	wn=SprawdzGramatyke(tablica,i,j);
+		    	if(!(wn.equals("SG"))){
+		    		for (int g = 0; g < slowa*slowa; g++){
+			    		if(tablica[g].equals(wn)){
+			    			wn="SG";
+			    			a=1;
+			    			break;
+			    		}
+			    	}
+		    		if(a!=1){
+		    			tablica[xt2]=wn;
+		    			xt2++;
+		    			wn="SG";
+		    		}
+		    		a=0;
+		    	}
+		    }
 		}
 		
-		String wynik = "";
 		
-		for(int i=0;i<slowa;i++){
-			for(int j=0;j<slowa;j++){
-				for(int g=1;g<slowa;g++){
-					for(int h=1;h<slowa;h++){
-						wynik = SprawdzGramatyke(tablica,i,j,g,h);
-						if(wynik.contains("Z"))
-							tablica[slowa-1][0] = wynik;
-					}
-				}
-			}
-		}
 		
 		System.out.println("Tablica po przeparsuj: ");
-		for(int i=0;i<slowa;i++){
-			for(int j=0;j<slowa;j++){
-				System.out.print(tablica[i][j] + " ");
-			}
-			System.out.println();
+		for(int i=0;i<slowa*slowa;i++){
+				System.out.print(tablica[i] + " ");
 		}
-		
-		for(int i=0;i<slowa;i++){
-			for(int j=0;j<slowa;j++){
-				if (tablica[i][j].contains("Z")){
-					return "Zdanie jest w gramatyce";	
-				}
-			}
+		System.out.println();
+		for(int i=0;i<slowa*slowa;i++){
+		if(tablica[i].contains("Z"))
+			return "Zdanie jest w gramatyce";
+
 		}
-		
-	return "Zdania nie ma w gramatyce";
+		return "Zdania nie ma w gramatyce";
 	}
 	
-	public static String SprawdzGramatyke(String tabliczka[][], int Pole1x, int Pole1y, int Pole2x, int Pole2y)
+	public static String SprawdzGramatyke(String tabliczka[], int x1, int x2)
 	{
 		String ExitString = "SG";
 		
 		for(int i=0;i<nttab.length;i++){
-			if (tabliczka[Pole1y][Pole1x].contains(nttab[i].PodajPS1()) && tabliczka[Pole2y][Pole2x].contains(nttab[i].PodajPS2())){
+			if (tabliczka[x1].contains(nttab[i].PodajPS1()) && tabliczka[x2].contains(nttab[i].PodajPS2())){
 				ExitString = nttab[i].PodajLS();
 				break;
 			}
@@ -249,9 +214,9 @@ public class Parser{
 
 public static void main(String args[]) throws IOException{  
 		//Wczytanie gramatyki
-		new Parser();
-		Parser.Czytaj(Tlines+NTlines);
-		//Parser.WyswietlGramatyke();
+		new Parserv3();
+		Parserv3.Czytaj(Tlines+NTlines);
+		//Parser2.WyswietlGramatyke();
 		
 		//Wprowadzanie zdania
 		String phrase; phrase = ""; 
@@ -269,10 +234,10 @@ public static void main(String args[]) throws IOException{
 		String[] result = phrase.split("\\s+");
 		
 		//Stworzenie tablicy o wymiarch x na x, gdzie x to ilosc slow w zdaniu
-		String Symbole[][] = new String[result.length][result.length];
+		String Symbole[] = new String[result.length*result.length];
 		for (int i = 0; i <result.length; i++)
 			{
-				Symbole[0][i] = CheckType(result[i]);
+				Symbole[i] = CheckType(result[i]);
 			}
 		
 		String CzyJest = Przeparsuj(Symbole,result.length);

@@ -1,4 +1,1 @@
-Zrobione:
-1. Podlaczyc gramatyke do parsera.
-Do zrobienia:
-2. Podlaczyc parser do konsoli w grze.
+1. Podlaczyc parser do konsoli w grze.
