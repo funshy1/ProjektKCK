@@ -29,11 +29,9 @@ public class MainCharacter extends Actors {
 
 	public void move(String gdzie, AbstractButton[] CantStand, int iloscElem) {
 		
-
-		
 		overlaptrue = false;  //flage ustawiamy na nie bo glowna postac nie ma kolizji
 		
-		if (gdzie.equals("do gory")) {      //jesli ktos wpisal do gory w konsoli
+		if (gdzie.equals("gora")) {      //jesli ktos wpisal do gory w konsoli
 			Timer.schedule(new Task() {     //timer + zadanie
 				@Override
 				public void run() {
@@ -64,7 +62,7 @@ public class MainCharacter extends Actors {
 			}, delay, delay, MoveCountPixels);
 		}
 
-		if (gdzie.equals("na dol")) {
+		if (gdzie.equals("dol")) {
 
 			Timer.schedule(new Task() {
 				@Override
@@ -96,7 +94,7 @@ public class MainCharacter extends Actors {
 				}
 			}, delay, delay, MoveCountPixels);
 		}
-		if (gdzie.equals("w lewo")) {
+		if (gdzie.equals("lewo")) {
 
 			Timer.schedule(new Task() {
 				@Override
@@ -127,7 +125,7 @@ public class MainCharacter extends Actors {
 				}
 			}, delay, delay, MoveCountPixels);
 		}
-		if (gdzie.equals("w prawo")) {
+		if (gdzie.equals("prawo")) {
 
 			Timer.schedule(new Task() {
 				@Override
@@ -199,5 +197,16 @@ public class MainCharacter extends Actors {
 		statistics[1].setPosition(image.getX()-305, image.getY()+312);
 		statistics[2].setPosition(image.getX()-277, image.getY()+312);
 		statistics[3].setPosition(image.getX()-247, image.getY()+312);
+	}
+	public void Speak(String text){
+		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20);
+		Cloud2.textField.setMessageText(text);
+		stage.addActor(Cloud2.textField);
+		Timer.schedule(new Task() {
+			@Override
+			public void run() {
+				Cloud2.textField.remove();
+			}
+		}, 3);
 	}
 }
