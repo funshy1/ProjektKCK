@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.screens.MenuScreen;
 
 public class ProjektKCK extends Game {
 	
@@ -11,8 +12,8 @@ public class ProjektKCK extends Game {
 	
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-		
+		this.setScreen(new MenuScreen(this));   //prze³¹czamy ekran na menu screen
 	}
+
 
 }
