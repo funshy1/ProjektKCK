@@ -16,6 +16,7 @@ public class TutorialScreen extends AbstractScreen {
 	public Actors map;          //mapa danej planszy    
 	public Actors map2;
 	public AbstractButton CantStand[];   //tablica w ktorej sa obiekty do kolizji
+	public Actors npchouse;				//dodajemy domek NPCta - test
 
 	public TutorialScreen(ProjektKCK game) {
 		super(game);
@@ -55,11 +56,13 @@ public class TutorialScreen extends AbstractScreen {
 		statslayout = new Actors(0, 668, "Layout\\statslayout.png");
 		map = new Actors(0, 0, "Maps\\tutorial\\1.jpg");
 		map2 = new Actors(0,0, "Maps\\tutorial\\2.png");
+		npchouse = new Actors(1600,680,"NPCMovement\\NPCHouse0001.png");
 		console = new Console(600, 270, 25, 40);
 		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
 		stage.addActor(map.image);
 		stage.addActor(mainCharacter.image);
 		stage.addActor(map2.image);
+		stage.addActor(npchouse.image);
 		stage.addActor(layoutconsole.image);
 		stage.addActor(console.textField);
 		stage.addActor(statslayout.image);
