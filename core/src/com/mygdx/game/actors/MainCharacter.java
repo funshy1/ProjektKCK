@@ -158,6 +158,138 @@ public class MainCharacter extends Actors {
 
 		}
 	}
+	
+public void moveBy(String gdzie,int ile, AbstractButton[] CantStand, int iloscElem) {
+		
+		overlaptrue = false;  //flage ustawiamy na nie bo glowna postac nie ma kolizji
+		
+		if (gdzie.equals("gora")) {      //jesli ktos wpisal do gory w konsoli
+			Timer.schedule(new Task() {     //timer + zadanie
+				@Override
+				public void run() {
+					TryBounds.set(bounds.getX(), bounds.getY() + 1, 32, 32); //dodajemy do naszej zmiennej ktora idzie przed romanem o 1 do gory
+					for (int i = 0; i < iloscElem; i++) {
+						if (TryBounds.overlaps(CantStand[i].bounds)) {     //sprawdzamy czy ta zmienna ma z czyms kolizje
+							overlaptrue = true;  //jesli tak to zwroc true
+							break;
+						}
+					}
+					if (overlaptrue == true) {    //jesli true to ma tam nie isc i wypisac w chmurce ze nie moze na to wejsc
+						Cloud.textField.setMessageText("Nie moge na\nto wejsc!");
+						stage.addActor(Cloud.textField);
+						Timer.schedule(new Task() {
+							@Override
+							public void run() {
+								Cloud.textField.remove();     //chmurka jest 3 sek a pozniej znika
+							}
+						}, 3);
+					} else {
+						image.setY(image.getY() + 1*ile);    //w przeciwnym wypadku idz o 1 pixel wyzej
+						changePicture("CharacterMovement\\walking n000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
+						updateActorBounds();
+					}
+				}
+			}, delay, delay, MoveCountPixels);
+		}
+
+		if (gdzie.equals("dol")) {
+
+			Timer.schedule(new Task() {
+				@Override
+				public void run() {
+					TryBounds.set(bounds.getX(), bounds.getY() - 1, 32, 32);
+					for (int i = 0; i < iloscElem; i++) {
+						if (TryBounds.overlaps(CantStand[i].bounds)) {
+							overlaptrue = true;
+							break;
+						}
+					}
+					if (overlaptrue == true) {
+						Cloud.textField.setMessageText("Nie moge na\nto wejsc!");
+						stage.addActor(Cloud.textField);
+						Timer.schedule(new Task() {
+							@Override
+							public void run() {
+								Cloud.textField.remove();
+							}
+						}, 3);
+					} else {
+						image.setY(image.getY() - 1*ile);
+						changePicture("CharacterMovement\\walking s000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
+
+						updateActorBounds();
+					}
+				}
+			}, delay, delay, MoveCountPixels);
+		}
+		if (gdzie.equals("lewo")) {
+
+			Timer.schedule(new Task() {
+				@Override
+				public void run() {
+					TryBounds.set(bounds.getX() - 1, bounds.getY(), 32, 32);
+					for (int i = 0; i < iloscElem; i++) {
+						if (TryBounds.overlaps(CantStand[i].bounds)) {
+							overlaptrue = true;
+							break;
+						}
+					}
+					if (overlaptrue == true) {
+						Cloud.textField.setMessageText("Nie moge na\nto wejsc!");
+						stage.addActor(Cloud.textField);
+						Timer.schedule(new Task() {
+							@Override
+							public void run() {
+								Cloud.textField.remove();
+							}
+						}, 3);
+					} else {
+						image.setX(image.getX() - 1*ile);
+						changePicture("CharacterMovement\\walking w000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
+						updateActorBounds();
+					}
+				}
+			}, delay, delay, MoveCountPixels);
+		}
+		if (gdzie.equals("prawo")) {
+
+			Timer.schedule(new Task() {
+				@Override
+				public void run() {
+					TryBounds.set(bounds.getX() + 1, bounds.getY(), 32, 32);
+					for (int i = 0; i < iloscElem; i++) {
+						if (TryBounds.overlaps(CantStand[i].bounds)) {
+							overlaptrue = true;
+							break;
+						}
+					}
+					if (overlaptrue == true) {
+						Cloud.textField.setMessageText("Nie moge na\nto wejsc!");
+						stage.addActor(Cloud.textField);
+						Timer.schedule(new Task() {
+							@Override
+							public void run() {
+								Cloud.textField.remove();
+							}
+						}, 3);
+					} else {
+						image.setX(image.getX() + 1*ile);
+						changePicture("CharacterMovement\\walking e000"+ruch+".png");
+						ruch++;
+						if (ruch == 8) ruch = 0;
+						updateActorBounds();
+					}
+				}
+			}, delay, delay, MoveCountPixels);
+
+		}
+	}
 
 	public void updateActorBounds() {
 		bounds.set(image.getX()+28, image.getY()+19, 44, 56);

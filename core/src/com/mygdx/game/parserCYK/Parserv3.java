@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 
 public class Parserv3{
 	static int Tlines;
@@ -138,7 +140,10 @@ public class Parserv3{
 		//Jesli tak to zamiana tego slowa na lewa strone z tej zasady
 		//Temp to slowo x ze zdania (np. dla x=0 slowo z 'Ala ma kota' to Ala)
 		
-		String temp; temp = a;
+		String temp;
+		
+		temp = a;
+		
 		for(int i=0;i<ttab.length;i++){
 			if(temp.equals(ttab[i].PodajPS())){
 				temp = ttab[i].PodajLS();
@@ -147,7 +152,6 @@ public class Parserv3{
 		}
 		return temp;
 	}
-	
 	
 	public static String ReverseCheckType(String a){
 		
@@ -163,6 +167,27 @@ public class Parserv3{
 		}
 		return temp;
 	}
+	
+	public static boolean isNumeric(String str){
+		
+		//Sprawdza czy da siê podany wyraz przeparsowac na liczbe
+	
+		NumberFormat formatter = NumberFormat.getInstance();
+		ParsePosition pos = new ParsePosition(0);
+		formatter.parse(str, pos);
+		return str.length() == pos.getIndex();
+	}
+	
+	public static int ZamienNaInt(String a){
+		
+		//Zmienia liczbe ze zdania od gracza z string na int
+		
+		String temp; int liczba;
+		temp = a;
+		liczba = Integer.parseInt(temp);
+		return liczba;
+	}
+	
 	
 	public static String[] Przeparsuj(String tablica[], int slowa){
 		
@@ -222,16 +247,19 @@ public class Parserv3{
 		    }
 		}
 		
-		/* 
+		/*
 		 
 		//Przydatne do debugowania
-		 
+		
 		System.out.println("Tablica po przeparsuj: ");
 		for(int i=0;i<slowa*slowa;i++){
 				System.out.print(tablica[i] + " ");
 		}
 		System.out.println();
 		
+		*/
+		
+		/*
 		//Stwierdza czy zdanie jest w gramatyce
 		
 		for(int i=0;i<slowa*slowa;i++){
@@ -261,7 +289,7 @@ public class Parserv3{
 	
 	//Metoda wykorzystywana przez konsole
 	
-	public String[] Dzialaj(String zdanie) throws IOException{  
+	public ZwrocDoScreen Dzialaj(String zdanie) throws IOException{  
 		
 		//Dzielenie zdania na tokeny
 		String[] result = zdanie.split("\\s+");
@@ -271,37 +299,61 @@ public class Parserv3{
 		//Stworzenie tablicy o wymiarch x na x, gdzie x to ilosc slow w zdaniu
 		String Symbole[] = new String[dl_tab];
 		
-		for (int i = 0; i <result.length; i++)
-			{
+		String temp; int liczba = 0; Boolean czy_liczba;
+		
+		
+		for (int i = 0; i <result.length; i++){	
+			
+			//Sprawdzam czy wyraz jest liczba
+			//Jesli tak to dokonuje konwersji wyrazu z String na Int,
+			//a do tablicy, która bêdzie parsowana wpisujê "liczba",
+			//oraz puszczam metodê CheckType, która sprawdza czy wyraz "liczba" jest w gramatyce
+			//Jesli nie to sprawdzam czy wyraz jest w gramatyce,
+			
+			temp = result[i];
+			czy_liczba = isNumeric(temp);
+			
+			if(czy_liczba == true){
+				czy_liczba=false;
+				liczba = ZamienNaInt(temp);
+				Symbole[i] = "liczba_dla_parsera";
+			}else{
 				Symbole[i] = CheckType(result[i]);
 			}
+		}
 		
-		String[] wynik = Przeparsuj(Symbole,result.length);
+		String[] wynik_przeparsuj = Przeparsuj(Symbole,result.length);
 		//System.out.println(CzyJest);
 		
 		int b=0;
 		
+		//Sprawdza czy jest zdaniem, jesli nie to omija nastêpne pêtle i zwraca
+		//tablice z N-ami
+		
 		for(int i=0;i<dl_tab;i++){
-			if(wynik[i].contains("Z")){
+			if(wynik_przeparsuj[i].contains("Z")){
 				b=1;
 			}
 		}
 		
 		String typ_zdania[] = new String[result.length];
 		int tz=0;
-		int c=0;
 		
 		for(int i=0;i<result.length;i++){
 			typ_zdania[i] = "N";
 		}
 		
+		
+		//Jesli jest zdaniem to do tablicy typ_zdania, zapisuje sobie
+		//jakim typem zdania ono jest oraz ustawiam zmienna c 
+		
 		if(b==1){
 			b=0;
 			for(int i=0;i<dl_tab;i++){
-				if(wynik[i].contains("Z")){
-					typ_zdania[tz]=wynik[i];
+				if(wynik_przeparsuj[i].contains("Z")){
+					typ_zdania[tz]=wynik_przeparsuj[i];
 					tz++;
-					c=1;
+					b=1;
 				}
 			}
 		}
@@ -311,20 +363,27 @@ public class Parserv3{
 		//Zwracam tablice, aby mozna bylo zwrocic wiecej niz jedna informacje
 		//W zaleznsci od typu zdania bedzie mozna tworzyc tablice o odpowiedniej wielkosci itd.
 		
-		String zwroc[] = new String[2];
+		ZwrocDoScreen zwroc = new ZwrocDoScreen();
 		
-		for(int i=0;i<zwroc.length;i++){
-			zwroc[i]="N";
-		}
+		int czy_sa_kratki=0;
 		
-		if(c==1){
-			c=0;
+		if(b==1){
+			b=0;
 			for(int i=0;i<typ_zdania.length;i++){
 				switch(typ_zdania[i]){
 					case "Z_Idz":
-						zwroc[0]="Z_Idz";
+						
+						//Sprawdzam czy zdanie zawiera w sobie liczbe kratek
+						//o ktore ma sie poruszyc postac
+						
+						for(int ij=0;ij<wynik_przeparsuj.length;ij++){
+							if(wynik_przeparsuj[ij].contains("o_x_kratek")){
+								czy_sa_kratki=1;
+							}
+						}
+						
 						for(int g=0;g<result.length;g++){
-							if(wynik[g].contains("orientacja")){
+							if(wynik_przeparsuj[g].contains("orientacja")){
 								k_ruchu=result[g];
 								if(k_ruchu.contains("lew"))
 									k_ruchu="lewo";
@@ -334,8 +393,18 @@ public class Parserv3{
 									k_ruchu="gora";
 								if(k_ruchu.contains("dol"))
 									k_ruchu="dol";
-								zwroc[1]=k_ruchu;
-								return zwroc; 
+						
+								if(czy_sa_kratki == 1){
+									zwroc.DodajElementLista_co_zwracam("Z_Idz");
+									zwroc.DodajElementLista_co_zwracam(k_ruchu);
+									zwroc.UstawCzy_liczba_kratek(true);
+									zwroc.UstawLiczba_kratek(liczba);
+									return zwroc;
+								}else{
+									zwroc.DodajElementLista_co_zwracam("Z_Idz");
+									zwroc.DodajElementLista_co_zwracam(k_ruchu);
+									return zwroc; 
+								}
 							}
 						}
 						break;
@@ -345,15 +414,13 @@ public class Parserv3{
 		}
 		return zwroc;
 	}
-
-	/* 
 	
 	//Pozostalosci po main
 
-	public static void main(String []args) throws IOException{
+	//public static void main(String []args) throws IOException{
 		
-		new Parserv3();
-	
+		/*
+		 
 		Parser2.WyswietlGramatyke();
 	
 		//Wprowadzanie zdania
@@ -368,9 +435,22 @@ public class Parserv3{
 
 		System.out.println("The sentence is: " + phrase);
 		
+		*/
+		/*
+		
 		//Przydatne do debugowania
 		new Parserv3();
-		System.out.println(dzialaj("idz w lewo"));
-	}
-	*/
+		ZwrocDoScreen wynik = new ZwrocDoScreen();
+		
+		wynik=(Dzialaj("idz w lewo o 3 kratki"));
+		
+		for(int i=0;i<wynik.PodajRozmiarLista_co_zwracam();i++){
+			System.out.println(wynik.PodajElementLista_co_zwracam(i));
+		}
+		if(wynik.PodajCzy_liczba_kratek()==true){
+			System.out.println(wynik.PodajLiczba_kratek());
+		}
+		
+		*/
+	//}
 }

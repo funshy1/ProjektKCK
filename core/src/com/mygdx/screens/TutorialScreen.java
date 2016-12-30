@@ -1,13 +1,13 @@
 package com.mygdx.screens;
 
 import java.io.IOException;
-
 import com.mygdx.game.ProjektKCK;
 import com.mygdx.game.Buttons.AbstractButton;
 import com.mygdx.game.Cloud.cloud;
 import com.mygdx.game.actors.Actors;
 import com.mygdx.game.actors.MainCharacter;
 import com.mygdx.game.parserCYK.Parserv3;
+import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
 
 
@@ -39,8 +39,7 @@ public class TutorialScreen extends AbstractScreen {
 			fraza = console.GetText();
 			
 			//Tablica zwracana przez parser
-			String[] wynik = new String[2];
-			
+			ZwrocDoScreen wynik = new ZwrocDoScreen();
 			try {
 				wynik = Parser1.Dzialaj(fraza);
 			} catch (IOException e) {
@@ -51,13 +50,21 @@ public class TutorialScreen extends AbstractScreen {
 			//Jesli jest to wyswietla tez jego typ
 			//System.out.println(wynik[0]);
 			
-			switch(wynik[0]){
-				case "Z_Idz":
-					mainCharacter.move(wynik[1], CantStand , ilosc_elemt_w_tablicy_przeszkod);
-					break;
-				case "N":
-					mainCharacter.Speak("Nie rozumiem Cie!");
-					break;
+			if(wynik.PodajRozmiarLista_co_zwracam() == 0){
+				mainCharacter.Speak("Nie rozumiem Cie!");
+			}else{
+				switch(wynik.PodajElementLista_co_zwracam(0)){
+					case "Z_Idz":
+						//System.out.println(wynik.PodajCzy_liczba_kratek());
+						if(wynik.PodajCzy_liczba_kratek() == false){
+							mainCharacter.move(wynik.PodajElementLista_co_zwracam(1), CantStand , ilosc_elemt_w_tablicy_przeszkod);
+						}else{
+							//System.out.println(wynik.PodajLiczba_kratek());
+							mainCharacter.moveBy(wynik.PodajElementLista_co_zwracam(1), wynik.PodajLiczba_kratek(), CantStand , ilosc_elemt_w_tablicy_przeszkod);
+						}
+						break;
+					//case "Z_Atakuj":
+				}
 			}
 			
 			console.PhraseEntered = false;
