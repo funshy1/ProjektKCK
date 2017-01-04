@@ -409,6 +409,17 @@ public class Parserv3{
 						}
 						break;
 					case "Z_Atakuj":
+						break;
+					case "Z_Kom":
+						zwroc.DodajElementLista_co_zwracam("Z_Kom");
+						String tekst="";
+						for(int ig=0;ig<wynik_przeparsuj.length;ig++){
+							if(wynik_przeparsuj[ig].equals("przywitanie")){
+								tekst = result[i];
+							}
+						}
+						zwroc.DodajElementLista_co_zwracam(tekst);
+						break;
 				}
 			}
 		}
@@ -436,13 +447,14 @@ public class Parserv3{
 		System.out.println("The sentence is: " + phrase);
 		
 		*/
+		
 		/*
 		
 		//Przydatne do debugowania
 		new Parserv3();
 		ZwrocDoScreen wynik = new ZwrocDoScreen();
 		
-		wynik=(Dzialaj("idz w lewo o 3 kratki"));
+		wynik=(Dzialaj("Powiedz Czesc"));
 		
 		for(int i=0;i<wynik.PodajRozmiarLista_co_zwracam();i++){
 			System.out.println(wynik.PodajElementLista_co_zwracam(i));
@@ -450,7 +462,7 @@ public class Parserv3{
 		if(wynik.PodajCzy_liczba_kratek()==true){
 			System.out.println(wynik.PodajLiczba_kratek());
 		}
-		
 		*/
+		
 	//}
 }

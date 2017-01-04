@@ -160,7 +160,7 @@ public class MainCharacter extends Actors {
 	}
 	
 public void moveBy(String gdzie,int ile, AbstractButton[] CantStand, int iloscElem) {
-		
+	
 		overlaptrue = false;  //flage ustawiamy na nie bo glowna postac nie ma kolizji
 		
 		if (gdzie.equals("gora")) {      //jesli ktos wpisal do gory w konsoli
