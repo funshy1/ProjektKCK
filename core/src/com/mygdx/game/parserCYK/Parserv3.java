@@ -415,7 +415,7 @@ public class Parserv3{
 						String tekst="";
 						for(int ig=0;ig<wynik_przeparsuj.length;ig++){
 							if(wynik_przeparsuj[ig].equals("przywitanie")){
-								tekst = result[i];
+								tekst = result[ig];
 							}
 						}
 						zwroc.DodajElementLista_co_zwracam(tekst);
@@ -447,7 +447,8 @@ public class Parserv3{
 		System.out.println("The sentence is: " + phrase);
 		
 		*/
-		
+
+	
 		/*
 		
 		//Przydatne do debugowania
@@ -462,7 +463,7 @@ public class Parserv3{
 		if(wynik.PodajCzy_liczba_kratek()==true){
 			System.out.println(wynik.PodajLiczba_kratek());
 		}
+
 		*/
-		
 	//}
 }

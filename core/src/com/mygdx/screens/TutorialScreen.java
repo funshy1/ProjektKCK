@@ -6,6 +6,7 @@ import com.mygdx.game.Buttons.AbstractButton;
 import com.mygdx.game.Cloud.cloud;
 import com.mygdx.game.actors.Actors;
 import com.mygdx.game.actors.MainCharacter;
+import com.mygdx.game.actors.NPC;
 import com.mygdx.game.parserCYK.Parserv3;
 import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
@@ -23,6 +24,7 @@ public class TutorialScreen extends AbstractScreen {
 	public AbstractButton CantStand[];   //tablica w ktorej sa obiekty do kolizji
 	public Actors npchouse;				//dodajemy domek NPCta - test
 	public Parserv3 Parser1;
+	public NPC npc1;
 	
 	public TutorialScreen(ProjektKCK game) throws IOException {
 		super(game);
@@ -33,7 +35,16 @@ public class TutorialScreen extends AbstractScreen {
 	public void render(float delta) {
 		
 		super.render(delta);
+		whatToDo();
+		CanTalkWithNpc();
+		refreshCamera();
+		stage.act();
+		spriteBatch.begin();
+		stage.draw();
+		spriteBatch.end();
+	}
 
+	private void whatToDo() {
 		if (console.PhraseEntered == true) {
 			
 			String fraza = new String();
@@ -65,17 +76,15 @@ public class TutorialScreen extends AbstractScreen {
 						}
 						break;
 					//case "Z_Atakuj":
+					case "Z_Kom":
+						mainCharacter.Speak(wynik.PodajElementLista_co_zwracam(1));
 				}
 			}
 			
 			console.PhraseEntered = false;
 	
 		}
-		refreshCamera();
-		stage.act();
-		spriteBatch.begin();
-		stage.draw();
-		spriteBatch.end();
+		
 	}
 
 	@Override
@@ -103,10 +112,12 @@ public class TutorialScreen extends AbstractScreen {
 		npchouse = new Actors(1600,680,"NPCMovement\\NPCHouse0001.png");
 		console = new Console(600, 270, 25, 40);
 		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
+		npc1 = new NPC(1650,650,"NPCMovement\\stopped0000.png",this.stage);
 		stage.addActor(map.image);
-		stage.addActor(mainCharacter.image);
 		stage.addActor(map2.image);
 		stage.addActor(npchouse.image);
+		stage.addActor(npc1.image);
+		stage.addActor(mainCharacter.image);
 		stage.addActor(layoutconsole.image);
 		stage.addActor(console.textField);
 		stage.addActor(statslayout.image);
@@ -131,6 +142,10 @@ public class TutorialScreen extends AbstractScreen {
 		layoutconsole.image.setX(mainCharacter.image.getX()-480);
 		layoutconsole.image.setY(mainCharacter.image.getY()-390);
 		mainCharacter.statsPositionUpdate();
+	}
+	
+	public void CanTalkWithNpc() {
+		npc1.collisionCheck(mainCharacter.bounds);
 	}
 	
 }

@@ -12,7 +12,7 @@ import com.mygdx.game.Cloud.cloud;
 
 public class MainCharacter extends Actors {
 	private float delay = (float) 0.005;   //ile opoznienia miedzy ruchami
-	private int MoveCountPixels = 32;     //o ile pixeli sie przesunie w ciagu calego 1 cyklu ruchu
+	private int MoveCountPixels = 64;     //o ile pixeli sie przesunie w ciagu calego 1 cyklu ruchu
 	public Rectangle TryBounds;           //koordynaty ktore sa o krok do przodu przed glowna postacia
 	private cloud Cloud;                  //chatbox
 	public Statistics[] statistics;      //tablica[4] statystyk 
@@ -160,7 +160,7 @@ public class MainCharacter extends Actors {
 	}
 	
 public void moveBy(String gdzie,int ile, AbstractButton[] CantStand, int iloscElem) {
-	
+
 		overlaptrue = false;  //flage ustawiamy na nie bo glowna postac nie ma kolizji
 		
 		if (gdzie.equals("gora")) {      //jesli ktos wpisal do gory w konsoli
