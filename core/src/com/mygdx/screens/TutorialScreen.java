@@ -23,10 +23,15 @@ public class TutorialScreen extends AbstractScreen {
 	public Actors map2;
 	public AbstractButton CantStand[];   //tablica w ktorej sa obiekty do kolizji
 	public Actors npchouse;				//dodajemy domek NPCta - test
+<<<<<<< HEAD
 	public Parserv3 Parser1;
 	public NPC npc1;
 	
 	public TutorialScreen(ProjektKCK game) throws IOException {
+=======
+
+	public TutorialScreen(ProjektKCK game) {
+>>>>>>> origin/master
 		super(game);
 		create();
 	}
@@ -115,8 +120,11 @@ public class TutorialScreen extends AbstractScreen {
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npchouse.image);
+<<<<<<< HEAD
 		stage.addActor(npc1.image);
 		stage.addActor(mainCharacter.image);
+=======
+>>>>>>> origin/master
 		stage.addActor(layoutconsole.image);
 		stage.addActor(console.textField);
 		stage.addActor(statslayout.image);
