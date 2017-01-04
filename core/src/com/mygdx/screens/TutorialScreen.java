@@ -33,7 +33,6 @@ public class TutorialScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
-		
 		super.render(delta);
 		whatToDo();
 		CanTalkWithNpc();
@@ -93,7 +92,7 @@ public class TutorialScreen extends AbstractScreen {
 
 	}
 	
-	public void create() {
+	public void create() throws IOException {
 		try {
 			Parser1 = new Parserv3();
 		} catch (IOException e) {
@@ -112,7 +111,7 @@ public class TutorialScreen extends AbstractScreen {
 		npchouse = new Actors(1600,680,"NPCMovement\\NPCHouse0001.png");
 		console = new Console(600, 270, 25, 40);
 		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
-		npc1 = new NPC(1650,650,"NPCMovement\\stopped0000.png",this.stage);
+		npc1 = new NPC(1650,650,"NPCMovement\\stopped0000.png",this.stage,this.console);
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npchouse.image);

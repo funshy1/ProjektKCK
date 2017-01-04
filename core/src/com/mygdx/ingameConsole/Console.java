@@ -37,7 +37,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 
 public class Console {
 	private String[] TableOfStrings;   //tablica do przechowywania wpisanych stringow
-	private String LastSentenceInConsole;  //ostatni string w konsoli
+	public String LastSentenceInConsole;  //ostatni string w konsoli
 	private TextFieldStyle textFieldStyle; 
 	private BitmapFont bitmapFont;
 	public TextField textField;

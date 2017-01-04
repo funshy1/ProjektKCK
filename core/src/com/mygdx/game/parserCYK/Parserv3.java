@@ -11,8 +11,8 @@ import java.text.ParsePosition;
 public class Parserv3{
 	static int Tlines;
 	static int NTlines;
-	static ZasadaGramatykidlaNT[] nttab;
-	static ZasadaGramatyki[] ttab;
+	public static ZasadaGramatykidlaNT[] nttab;
+	public static ZasadaGramatyki[] ttab;
 	
 	public Parserv3() throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader("Grammar\\gramatyka.txt"));
