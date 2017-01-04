@@ -111,7 +111,7 @@ public class TutorialScreen extends AbstractScreen {
 		npchouse = new Actors(1600,680,"NPCMovement\\NPCHouse0001.png");
 		console = new Console(600, 270, 25, 40);
 		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
-		npc1 = new NPC(1650,650,"NPCMovement\\stopped0000.png",this.stage,this.console);
+		npc1 = new NPC(1650,650,"NPCMovement\\stopped0000.png",this.stage,this.console,this.Parser1);
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npchouse.image);
@@ -145,6 +145,7 @@ public class TutorialScreen extends AbstractScreen {
 	
 	public void CanTalkWithNpc() {
 		npc1.collisionCheck(mainCharacter.bounds);
+		npc1.sayHello();
 	}
 	
 }

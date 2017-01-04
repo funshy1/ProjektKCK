@@ -19,11 +19,11 @@ public class NPC extends Actors{
 	private Parserv3 Parser;
 	private Console console;
 	
-	public NPC(int X, int Y, String sciezka , Stage stage, Console console) throws IOException {
+	public NPC(int X, int Y, String sciezka , Stage stage, Console console, Parserv3 parser) throws IOException {
 		super(X, Y, sciezka);
 		this.stage = stage;
 		this.console = console;
-		Parser = new Parserv3();
+		this.Parser = parser;
 		button = new AbstractButton(1600,600, 200, 140);
 		button.button.setDebug(true);
 		stage.addActor(button.button);
@@ -37,7 +37,7 @@ public class NPC extends Actors{
 		else
 			this.CanTalk = false;
 	}
-	/*
+	
 	public void Speak(String text){
 		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20);
 		Cloud2.textField.setMessageText(text);
@@ -57,9 +57,10 @@ public class NPC extends Actors{
 		int b=0;
 		
 		if(this.CanTalk == true){
-			if(console.PhraseEntered == true){
-				for(int i=0;i<Parser.ttab.length;i++){
-					if(Parser.ttab[i].PodajLS() == "przywitanie"){
+			if(console.phraseEntereddlaNPC == true){
+				console.phraseEntereddlaNPC = false;
+				for(int i=0;i<Parserv3.ttab.length;i++){
+					if(Parserv3.ttab[i].PodajLS().equals("przywitanie")){
 						if(console.LastSentenceInConsole.contains(Parserv3.ttab[i].PodajPS())){
 							mcSaidHello=true;
 							b=i;
@@ -67,9 +68,22 @@ public class NPC extends Actors{
 						}
 					}
 				}
-				this.Speak(Parser.ttab[b].PodajPS());
+				if(b != 0){
+					//Losowac przywitanie
+					this.Speak(Parserv3.ttab[b].PodajPS());
+					this.testPlayer();
+				}
 			}
 		}
 	}
-*/
+	
+	public void testPlayer(){
+		this.Speak("Oblicz 2+2?");
+		if(console.phraseEntereddlaNPC == true){
+			console.phraseEntereddlaNPC = false;
+			if(console.LastSentenceInConsole.contains("4")){
+				this.Speak("Dobrze!");
+			}
+		}
+	}
 }

@@ -33,6 +33,7 @@ orientacja2 -> przodu
 orientacja3 -> siebie
 Z_Kom -> komunikacja przywitanie
 Z_Kom -> komunikacja pozegnanie
+Z_Kom -> komunikacja liczba_dla_parsera
 komunikacja -> Mow
 komunikacja -> mow
 komunikacja -> Powiedz
