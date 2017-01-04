@@ -76,7 +76,11 @@ public class TutorialScreen extends AbstractScreen {
 						break;
 					//case "Z_Atakuj":
 					case "Z_Kom":
-						mainCharacter.Speak(wynik.PodajElementLista_co_zwracam(1));
+						if(wynik.PodajCzyLiczba() == false){
+							mainCharacter.Speak(wynik.PodajElementLista_co_zwracam(1));
+						}else{
+							mainCharacter.Speak(Integer.toString(wynik.PodajLiczba()));
+						}
 				}
 			}
 			

@@ -69,21 +69,23 @@ public class NPC extends Actors{
 					}
 				}
 				if(b != 0){
-					//Losowac przywitanie
+					//Zrobic losowanie przywitania
 					this.Speak(Parserv3.ttab[b].PodajPS());
-					this.testPlayer();
+					//this.testPlayer();
 				}
 			}
 		}
 	}
-	
+	/*
 	public void testPlayer(){
 		this.Speak("Oblicz 2+2?");
 		if(console.phraseEntereddlaNPC == true){
 			console.phraseEntereddlaNPC = false;
+			System.out.println(console.LastSentenceInConsole);
 			if(console.LastSentenceInConsole.contains("4")){
 				this.Speak("Dobrze!");
 			}
 		}
 	}
+	*/
 }

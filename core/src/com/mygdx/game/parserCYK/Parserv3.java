@@ -418,7 +418,19 @@ public class Parserv3{
 								tekst = result[ig];
 							}
 						}
-						zwroc.DodajElementLista_co_zwracam(tekst);
+						int liczba2=0;
+						for(int ig=0;ig<wynik_przeparsuj.length;ig++){
+							if(wynik_przeparsuj[ig].equals("liczba_dla_parsera")){
+								liczba2 = ZamienNaInt(result[ig]);
+							}
+						}
+						
+						if(tekst.equals("")){
+							zwroc.UstawCzyLiczba(true);
+							zwroc.UstawLiczba(liczba2);
+						}else{
+							zwroc.DodajElementLista_co_zwracam(tekst);
+						}
 						break;
 				}
 			}
