@@ -9,7 +9,9 @@ import com.badlogic.gdx.utils.Timer.Task;
 import com.mygdx.game.Buttons.AbstractButton;
 import com.mygdx.game.Cloud.cloud;
 import com.mygdx.game.parserCYK.Parserv3;
+import com.mygdx.game.parserCYK.ZasadaGramatyki;
 import com.mygdx.ingameConsole.Console;
+import java.util.Random;
 
 public class NPC extends Actors{
 	
@@ -18,6 +20,7 @@ public class NPC extends Actors{
 	private boolean CanTalk = false;
 	private Parserv3 Parser;
 	private Console console;
+	Random generator;
 	
 	public NPC(int X, int Y, String sciezka , Stage stage, Console console, Parserv3 parser) throws IOException {
 		super(X, Y, sciezka);
@@ -26,6 +29,7 @@ public class NPC extends Actors{
 		this.Parser = parser;
 		button = new AbstractButton(1600,600, 200, 140);
 		button.button.setDebug(true);
+		generator = new Random();
 		stage.addActor(button.button);
 		
 	}
@@ -56,6 +60,9 @@ public class NPC extends Actors{
 		Boolean mcSaidHello=false;
 		int b=0;
 		
+		int licznik=0;
+	
+		
 		if(this.CanTalk == true){
 			if(console.phraseEntereddlaNPC == true){
 				console.phraseEntereddlaNPC = false;
@@ -68,24 +75,43 @@ public class NPC extends Actors{
 						}
 					}
 				}
+				int l=0;
 				if(b != 0){
-					//Zrobic losowanie przywitania
-					this.Speak(Parserv3.ttab[b].PodajPS());
+					//Licze ile jest przywitan
+					for(int g=0;g<Parserv3.ttab.length;g++){
+						if(Parserv3.ttab[g].PodajLS().equals("przywitanie")){
+							licznik++;
+						}
+					}
+					//Wpisuje przywitania do tablicy
+					String[] temptab = new String [licznik];
+					for(int h=0;h<Parserv3.ttab.length;h++){
+						if(Parserv3.ttab[h].PodajLS().equals("przywitanie")){
+							temptab[l]=Parserv3.ttab[h].PodajPS();
+							l++;
+						}
+					}
+					int wyl=0;
+					//Losuje liczbe
+					wyl = generator.nextInt(licznik);
+					
+					this.Speak(temptab[wyl]);
 					//this.testPlayer();
 				}
 			}
 		}
 	}
+	
 	/*
 	public void testPlayer(){
-		this.Speak("Oblicz 2+2?");
+		this.Speak("Oblicz 2+2!");
 		if(console.phraseEntereddlaNPC == true){
 			console.phraseEntereddlaNPC = false;
-			System.out.println(console.LastSentenceInConsole);
 			if(console.LastSentenceInConsole.contains("4")){
 				this.Speak("Dobrze!");
 			}
 		}
 	}
 	*/
+	
 }
