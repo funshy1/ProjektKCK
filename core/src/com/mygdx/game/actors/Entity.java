@@ -19,7 +19,7 @@ public abstract class Entity extends Actors {
 	protected Parserv3 Parser;
 	protected Console console;
 	Random generator;
-	protected boolean MainCharacertInside = false;
+	protected boolean MainCharacterInside = false;
 	protected String Type = "";
 	public boolean przywitanie = false;
 	public float iloscCzasuTimer = 3;
@@ -40,10 +40,10 @@ public abstract class Entity extends Actors {
 
 	public void collisionCheck(Rectangle rectangle) {
 		if (button.bounds.overlaps(rectangle)) {
-			this.MainCharacertInside = true;
+			this.MainCharacterInside = true;
 			
 		} else
-			this.MainCharacertInside = false;
+			this.MainCharacterInside = false;
 			przywitanie = false;
 	}
 
