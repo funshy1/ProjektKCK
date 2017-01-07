@@ -58,7 +58,6 @@ public class NPC extends Actors{
 	public void sayHello(){
 		
 		Boolean mcSaidHello=false;
-		int b=0;
 		
 		int licznik=0;
 	
@@ -70,13 +69,13 @@ public class NPC extends Actors{
 					if(Parserv3.ttab[i].PodajLS().equals("przywitanie")){
 						if(console.LastSentenceInConsole.contains(Parserv3.ttab[i].PodajPS())){
 							mcSaidHello=true;
-							b=i;
 							break;
 						}
 					}
 				}
 				int l=0;
-				if(b != 0){
+				if(mcSaidHello == true){
+					mcSaidHello = false;
 					//Licze ile jest przywitan
 					for(int g=0;g<Parserv3.ttab.length;g++){
 						if(Parserv3.ttab[g].PodajLS().equals("przywitanie")){
