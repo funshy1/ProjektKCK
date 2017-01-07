@@ -2,11 +2,13 @@ package com.mygdx.game.actors;
 
 import java.io.IOException;
 
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.parserCYK.Parserv3;
 import com.mygdx.ingameConsole.Console;
 
 public class NPC extends Entity{
+
 
 	public NPC(String Type, int X, int Y, String sciezka, Stage stage, Console console, Parserv3 parser, int a, int b,
 			int c, int d) throws IOException {
@@ -14,6 +16,7 @@ public class NPC extends Entity{
 		// TODO Auto-generated constructor stub
 	}
 	
+
 	
 	public void sayHello(){
 		
@@ -59,6 +62,7 @@ public class NPC extends Entity{
 				}
 			}
 		}
+
 	}
 	
 	
@@ -74,5 +78,7 @@ public class NPC extends Entity{
 		}
 	}
 	
+
+
 
 }
