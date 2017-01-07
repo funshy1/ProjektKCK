@@ -19,8 +19,8 @@ public abstract class Entity extends Actors {
 	protected Parserv3 Parser;
 	protected Console console;
 	Random generator;
-	protected boolean MainCharacterInside = false;
-	protected String Type = "";
+	protected boolean MainCharacterInside;
+	protected String Type;
 	public boolean przywitanie = false;
 	public float iloscCzasuTimer = 3;
 
@@ -33,6 +33,7 @@ public abstract class Entity extends Actors {
 		button = new AbstractButton(a, b, c, d); // 1600,600, 200, 140
 		button.button.setDebug(true);
 		generator = new Random();
+		MainCharacterInside = true;
 		stage.addActor(button.button);
 		this.Type = Type;
 		// TODO Auto-generated constructor stub

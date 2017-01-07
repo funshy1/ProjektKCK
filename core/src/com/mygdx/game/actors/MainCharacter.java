@@ -12,15 +12,13 @@ import com.mygdx.game.Cloud.cloud;
 
 public class MainCharacter extends Actors {
 	private float delay = (float) 0.005; // ile opoznienia miedzy ruchami
-	private int MoveCountPixels = 64; // o ile pixeli sie przesunie w ciagu
-										// calego 1 cyklu ruchu
-	public Rectangle TryBounds; // koordynaty ktore sa o krok do przodu przed
-								// glowna postacia
+	private int MoveCountPixels = 64; // o ile pixeli sie przesunie w ciagu calego 1 cyklu ruchu
+	public Rectangle TryBounds; // koordynaty ktore sa o krok do przodu przed glowna postacia
 	private cloud Cloud; // chatbox
 	public Statistics[] statistics; // tablica[4] statystyk
 	private Stage stage;
 	public boolean overlaptrue = false; // flaga do kolizji
-
+	Boolean CanAttack = false;
 	int ruch = 0;
 
 	public MainCharacter(int X, int Y, String sciezka, Stage stage) {
@@ -348,6 +346,14 @@ public class MainCharacter extends Actors {
 		MoveCountPixels = 64;
 	}
 
+	public void SetCanAttack(Boolean a){
+		CanAttack = a;
+	}
+			
+	public Boolean GetCanAttack(){
+		return CanAttack;
+	}
+	
 	public void updateActorBounds() {
 		bounds.set(image.getX() + 28, image.getY() + 19, 44, 56);
 		Cloud.setPosition(bounds.getX() + 40 + 35, bounds.getY() + 19 + 44);

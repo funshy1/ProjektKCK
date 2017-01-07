@@ -20,6 +20,10 @@ public class Parserv3{
 		
 		//Liczenie ile jest zasad wg. typu
 		while((linia = reader.readLine()) != null){
+			if(linia.contains("#--")){
+				continue;
+			}
+			
 			String[] wynikm = linia.split(" -> ");
 			if(wynikm[1].contains(" ")){
 				Parserv3.NTlines++;
@@ -71,6 +75,9 @@ public class Parserv3{
 			while((linia = buff.readLine()) != null){
 				String fraza; 
 				fraza = linia;
+				if(fraza.contains("#--")){
+					continue;
+				}
 				String[] wynik = fraza.split(" -> ");
 				
 				if(wynik[1].contains(" ")){
@@ -409,6 +416,14 @@ public class Parserv3{
 						}
 						break;
 					case "Z_Atakuj":
+						zwroc.DodajElementLista_co_zwracam("Z_Atakuj");
+						 String tekst2="";
+						 for(int ig=0;ig<wynik_przeparsuj.length;ig++){
+							 if(wynik_przeparsuj[ig].equals("czasownik2")){
+								 tekst2 = result[ig];
+							 }
+						 }
+						 zwroc.DodajElementLista_co_zwracam(tekst2);
 						break;
 					case "Z_Kom":
 						zwroc.DodajElementLista_co_zwracam("Z_Kom");
@@ -467,7 +482,7 @@ public class Parserv3{
 		new Parserv3();
 		ZwrocDoScreen wynik = new ZwrocDoScreen();
 		
-		wynik=(Dzialaj("Powiedz Czesc"));
+		wynik=(Dzialaj("atakuj wroga"));
 		
 		for(int i=0;i<wynik.PodajRozmiarLista_co_zwracam();i++){
 			System.out.println(wynik.PodajElementLista_co_zwracam(i));
