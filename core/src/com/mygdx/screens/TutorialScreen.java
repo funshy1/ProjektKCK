@@ -24,7 +24,7 @@ public class TutorialScreen extends AbstractScreen {
 	public Actors map; // mapa danej planszy
 	public Actors map2;
 	public AbstractButton CantStand[]; // tablica w ktorej sa obiekty do kolizji
-	public Actors npchouse; // dodajemy domek NPCta - test
+	
 	public Parserv3 Parser1;
 	public StartowyNPC npc1;
 	public Enemy enemy1;
@@ -50,17 +50,15 @@ public class TutorialScreen extends AbstractScreen {
 		statslayout = new Actors(0, 668, "Layout\\statslayout.png");
 		map = new Actors(0, 0, "Maps\\tutorial\\1.jpg");
 		map2 = new Actors(0, 0, "Maps\\tutorial\\2.png");
-		npchouse = new Actors(1600, 680, "NPCMovement\\NPCHouse0001.png");
 		console = new Console(600, 270, 25, 1);
-		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
+		mainCharacter = new MainCharacter(432, 450, "CharacterMovement\\walking e0000.png", stage);
 
-		npc1 = new StartowyNPC("NPC", 1650, 650, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
-				1600, 600, 200, 140);
+		npc1 = new StartowyNPC("NPC", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
+				1600, 500, 200, 140);
 		enemy1 = new Enemy("NPC", 1650,350,"NPCMovement\\stopped0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
 		
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
-		stage.addActor(npchouse.image);
 		stage.addActor(npc1.image);
 		stage.addActor(enemy1.image);
 		stage.addActor(mainCharacter.image);
