@@ -51,7 +51,7 @@ public class TutorialScreen extends AbstractScreen {
 		map = new Actors(0, 0, "Maps\\tutorial\\1.jpg");
 		map2 = new Actors(0, 0, "Maps\\tutorial\\2.png");
 		npchouse = new Actors(1600, 680, "NPCMovement\\NPCHouse0001.png");
-		console = new Console(600, 270, 25, 40);
+		console = new Console(600, 270, 25, 1);
 		mainCharacter = new MainCharacter(400, 450, "CharacterMovement\\walking e0000.png", stage);
 
 		npc1 = new StartowyNPC("NPC", 1650, 650, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,

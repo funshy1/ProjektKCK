@@ -149,12 +149,8 @@ public class Console {
 	
 
 	public void bitMapFontInit(int size) {
-		bitmapFont = new BitmapFont();
-		generator = new FreeTypeFontGenerator(Gdx.files.internal("TimesNewRoman.ttf"));
-		parameter = new FreeTypeFontParameter();
-		parameter.size = size;
-		bitmapFont = generator.generateFont(parameter);
-		generator.dispose();
+		bitmapFont = new BitmapFont(Gdx.files.internal("Font/BIGFONT.fnt"));
+		bitmapFont.getData().setScale(size);
 	}
 	
 	public void setPosition(float X, float Y) {

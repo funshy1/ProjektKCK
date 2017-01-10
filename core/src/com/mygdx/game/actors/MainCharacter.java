@@ -2,6 +2,7 @@ package com.mygdx.game.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
@@ -21,6 +22,7 @@ public class MainCharacter extends Actors {
 	Boolean CanAttack = false;
 	int ruch = 0;
 
+	
 	public MainCharacter(int X, int Y, String sciezka, Stage stage) {
 		super(X, Y, sciezka);
 		this.stage = stage;
@@ -70,6 +72,7 @@ public class MainCharacter extends Actors {
 							public void run() {
 								Cloud.textField.remove(); // chmurka jest 3 sek
 															// a pozniej znika
+								
 							}
 						}, 3);
 					} else {
