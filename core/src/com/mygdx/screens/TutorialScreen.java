@@ -90,11 +90,12 @@ public class TutorialScreen extends AbstractScreen {
 
 			String fraza = new String();
 			fraza = console.GetText();
-
+			
 			// Tablica zwracana przez parser
 			ZwrocDoScreen wynik = new ZwrocDoScreen();
+			fraza = fraza.toLowerCase();
 			try {
-				wynik = Parser1.Dzialaj(fraza);
+				wynik = Parserv3.Dzialaj(fraza);
 			} catch (IOException e) {
 				System.out.println("Popsules nasza gre");
 			}
@@ -107,6 +108,7 @@ public class TutorialScreen extends AbstractScreen {
 			if (wynik.PodajRozmiarLista_co_zwracam() == 0) {
 				mainCharacter.Speak("Nie rozumiem Cie!");
 			} else {
+				
 				switch (wynik.PodajElementLista_co_zwracam(0)) {
 				case "Z_Idz":
 					// System.out.println(wynik.PodajCzy_liczba_kratek());
@@ -121,8 +123,7 @@ public class TutorialScreen extends AbstractScreen {
 					break;
 				case "Z_Atakuj":
 					mainCharacter.SetCanAttack(true);
-					enemy1.SetUsedWord(wynik.PodajElementLista_co_zwracam(1));
-					CanAttackNpc();
+					CanAttackNpc(wynik);
 					break;
 				case "Z_Kom":
 					if (wynik.PodajCzyLiczba() == false) {
@@ -165,12 +166,12 @@ public class TutorialScreen extends AbstractScreen {
 
 	public void CanTalkWithNpc() {
 		npc1.collisionCheck(mainCharacter.bounds);
-		npc1.sayHello();
 		npc1.rozmowa();
 	}
-	public void CanAttackNpc(){
+	public void CanAttackNpc(ZwrocDoScreen wynik){
 		enemy1.collisionCheck(mainCharacter.bounds);
 		if(mainCharacter.GetCanAttack() == true)
+			enemy1.SetUsedWord(wynik.PodajElementLista_co_zwracam(1));
 			enemy1.IsHitbyMC();
 	}
 }

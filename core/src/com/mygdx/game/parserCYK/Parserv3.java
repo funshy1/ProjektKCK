@@ -304,7 +304,7 @@ public class Parserv3{
 	
 	//Metoda wykorzystywana przez konsole
 	
-	public ZwrocDoScreen Dzialaj(String zdanie) throws IOException{  
+	public static ZwrocDoScreen Dzialaj(String zdanie) throws IOException{  
 		
 		//Dzielenie zdania na tokeny
 		String[] result = zdanie.split("\\s+");
@@ -410,35 +410,36 @@ public class Parserv3{
 									k_ruchu="dol";
 						
 								if(czy_sa_kratki == 1){
-									zwroc.DodajElementLista_co_zwracam("Z_Idz");
-									zwroc.DodajElementLista_co_zwracam(k_ruchu);
+									zwroc.DodajElementLista_co_zwracam(0,"Z_Idz");
+									zwroc.DodajElementLista_co_zwracam(1,k_ruchu);
 									zwroc.UstawCzy_liczba_kratek(true);
 									zwroc.UstawLiczba_kratek(liczba);
 									return zwroc;
 								}else{
-									zwroc.DodajElementLista_co_zwracam("Z_Idz");
-									zwroc.DodajElementLista_co_zwracam(k_ruchu);
+									zwroc.DodajElementLista_co_zwracam(0,"Z_Idz");
+									zwroc.DodajElementLista_co_zwracam(1,k_ruchu);
 									return zwroc; 
 								}
 							}
 						}
 						break;
 					case "Z_Atakuj":
-						zwroc.DodajElementLista_co_zwracam("Z_Atakuj");
+						zwroc.DodajElementLista_co_zwracam(0,"Z_Atakuj");
 						 String tekst2="";
 						 for(int ig=0;ig<wynik_przeparsuj.length;ig++){
 							 if(wynik_przeparsuj[ig].equals("czasownik2")){
 								 tekst2 = result[ig];
 							 }
 						 }
-						 zwroc.DodajElementLista_co_zwracam(tekst2);
+						 zwroc.DodajElementLista_co_zwracam(1,tekst2);
 						break;
 					case "Z_Kom":
-						zwroc.DodajElementLista_co_zwracam("Z_Kom");
-						String tekst="";
+						zwroc.DodajElementLista_co_zwracam(0,"Z_Kom");
+						String tekst=""; String tekst21="";
 						for(int ig=0;ig<wynik_przeparsuj.length;ig++){
 							if(wynik_przeparsuj[ig].equals("przywitanie")){
 								tekst = result[ig];
+								tekst21 = wynik_przeparsuj[ig];
 							}
 						}
 						int liczba2=0;
@@ -452,7 +453,8 @@ public class Parserv3{
 							zwroc.UstawCzyLiczba(true);
 							zwroc.UstawLiczba(liczba2);
 						}else{
-							zwroc.DodajElementLista_co_zwracam(tekst);
+							zwroc.DodajElementLista_co_zwracam(1,tekst);
+							zwroc.DodajElementLista_co_zwracam(2,tekst21);
 						}
 						break;
 				}

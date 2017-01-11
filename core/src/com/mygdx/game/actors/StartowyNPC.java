@@ -4,6 +4,7 @@ import java.io.IOException;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.mygdx.game.parserCYK.Parserv3;
+import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
 
 public class StartowyNPC extends NPC {
@@ -31,6 +32,7 @@ public class StartowyNPC extends NPC {
 	 * } } }
 	 */
 	public void rozmowa() {
+		sayHello();
 		if (przywitanie == true) {
 			rozmowa[0] = true;
 			console.EnterClickedforNPC = false;
@@ -50,15 +52,33 @@ public class StartowyNPC extends NPC {
 		
 		if (rozmowa[1] == true) {
 			
-			if (console.LastSentenceInConsole.contains("4")) {
-				//console.phraseEntereddlaNPC = false;
-				this.Speak("Dobrze!");
+			ZwrocDoScreen wynik = null;
+			
+			try {
+				wynik = Parserv3.Dzialaj(console.LastSentenceInConsole);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-
-			else {
-				this.Speak("No chyba nie umiesz liczyc! sprobuj ponownie! Ile to 2+2?!");
+			
+			if(wynik.PodajElementLista_co_zwracam(0).equals("Z_Kom") && wynik.PodajCzyLiczba() == true){
+				if (wynik.PodajLiczba()==4) {
+					//console.phraseEntereddlaNPC = false;
+					this.Speak("Dobrze!");
+				}
+				else {
+					this.Speak("No chyba nie umiesz liczyc! sprobuj ponownie! Ile to 2+2?!");
+				}
 			}
 		}
-
+		
+		if(MainCharacterInside == false){
+			przywitanie = false;
+			czasowaZmienna = 0;
+			for (int i = 0; i < 5; i++) {
+				rozmowa[i] = false;
+			}
+		}
+		
 	}
 }

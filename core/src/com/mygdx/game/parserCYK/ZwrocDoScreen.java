@@ -16,10 +16,13 @@ public class ZwrocDoScreen {
 	
 	public ZwrocDoScreen(){
 		this.czy_liczba_kratek = false;
+		lista_co_zwracam.add(0, "N");
+		lista_co_zwracam.add(1, "N");
+		lista_co_zwracam.add(2, "N");
 	}
 	
-	public void DodajElementLista_co_zwracam(String ad) {
-		this.lista_co_zwracam.add(ad);
+	public void DodajElementLista_co_zwracam(int indx,String ad) {
+		this.lista_co_zwracam.add(indx,ad);
 	}
 	
 	public void UstawLiczba_kratek(int liczba_kratek) {

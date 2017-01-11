@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.mygdx.game.parserCYK.Parserv3;
+import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
 
 public class NPC extends Entity {
@@ -17,27 +18,25 @@ public class NPC extends Entity {
 	}
 
 	public void sayHello() {
-		
-		Boolean mcSaidHello = false;
 
 		int licznik = 0;
 
 		if (MainCharacterInside == true) {
-			
 			if (console.phraseEntereddlaNPC == true) {
 				console.phraseEntereddlaNPC = false;
-				for (int i = 0; i < Parserv3.ttab.length; i++) {
-					if (Parserv3.ttab[i].PodajLS().equals("przywitanie")) {
-						if (console.LastSentenceInConsole.contains(Parserv3.ttab[i].PodajPS())) {
-							mcSaidHello = true;
-							break;
-						}
-					}
+				ZwrocDoScreen wynik = null;
+				
+				try {
+					wynik = Parserv3.Dzialaj(console.LastSentenceInConsole);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
+				if(wynik.PodajElementLista_co_zwracam(0).equals("Z_Kom") 
+				   && wynik.PodajElementLista_co_zwracam(2).equals("przywitanie")){
 
-				int l = 0;
-				if (mcSaidHello == true) {
-					mcSaidHello = false;
+					int l = 0;
 					// Licze ile jest przywitan
 					for (int g = 0; g < Parserv3.ttab.length; g++) {
 						if (Parserv3.ttab[g].PodajLS().equals("przywitanie")) {
@@ -62,7 +61,6 @@ public class NPC extends Entity {
 				}
 			}
 		}
-
 	}
-
 }
+

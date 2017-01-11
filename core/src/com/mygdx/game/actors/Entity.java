@@ -49,6 +49,7 @@ public abstract class Entity extends Actors {
 	}
 
 	public void Speak(String text) {
+		iloscCzasuTimer = 3;
 		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20);
 		Cloud2.textField.setMessageText(text);
 		stage.addActor(Cloud2.textField);
@@ -60,4 +61,13 @@ public abstract class Entity extends Actors {
 		}, iloscCzasuTimer);
 	}
 
+	public boolean isMainCharacterInside() {
+		return MainCharacterInside;
+	}
+
+	public void setMainCharacterInside(boolean mainCharacterInside) {
+		MainCharacterInside = mainCharacterInside;
+	}
+
+	
 }
