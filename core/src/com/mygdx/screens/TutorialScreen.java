@@ -28,7 +28,7 @@ public class TutorialScreen extends AbstractScreen {
 	public Parserv3 Parser1;
 	public StartowyNPC npc1;
 	public Enemy enemy1;
-
+	
 	public TutorialScreen(ProjektKCK game) throws IOException {
 		super(game);
 		create();
@@ -45,7 +45,7 @@ public class TutorialScreen extends AbstractScreen {
 		CantStandInit();
 		for (int i = 0; i < ilosc_elemt_w_tablicy_przeszkod; i++) {
 			stage.addActor(CantStand[i].button);
-		}
+		}		
 		layoutconsole = new Actors(0, 0, "Layout\\layoutconsole.png");
 		statslayout = new Actors(0, 668, "Layout\\statslayout.png");
 		map = new Actors(0, 0, "Maps\\tutorial\\1.jpg");
@@ -53,9 +53,9 @@ public class TutorialScreen extends AbstractScreen {
 		console = new Console(600, 270, 25, 1);
 		mainCharacter = new MainCharacter(432, 450, "CharacterMovement\\walking e0000.png", stage);
 
-		npc1 = new StartowyNPC("NPC", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
+		npc1 = new StartowyNPC("Startowy", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
 				1600, 500, 200, 140);
-		enemy1 = new Enemy("NPC", 1650,350,"NPCMovement\\stopped0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
+		enemy1 = new Enemy("Wrog", 1650,350,"NPCMovement\\stopped0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
 		
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
@@ -173,5 +173,4 @@ public class TutorialScreen extends AbstractScreen {
 		if(mainCharacter.GetCanAttack() == true)
 			enemy1.IsHitbyMC();
 	}
-
 }

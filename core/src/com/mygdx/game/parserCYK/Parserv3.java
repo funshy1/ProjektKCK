@@ -23,7 +23,9 @@ public class Parserv3{
 			if(linia.contains("#--")){
 				continue;
 			}
-			
+			if(!(linia.matches("(.*)[a-zA-Z](.*)"))){
+				continue;
+			}
 			String[] wynikm = linia.split(" -> ");
 			if(wynikm[1].contains(" ")){
 				Parserv3.NTlines++;
@@ -75,9 +77,15 @@ public class Parserv3{
 			while((linia = buff.readLine()) != null){
 				String fraza; 
 				fraza = linia;
+				
 				if(fraza.contains("#--")){
 					continue;
 				}
+				
+				if(!(linia.matches("(.*)[a-zA-Z](.*)"))){
+					continue;
+				}
+				
 				String[] wynik = fraza.split(" -> ");
 				
 				if(wynik[1].contains(" ")){
@@ -110,15 +118,15 @@ public class Parserv3{
 	}
 	
 	public static void WyswietlGramatyke(){
-		System.out.println("Terminale: ");
+		System.out.println(Parserv3.Tlines + " terminali: ");
 		for(int i=0;i<ttab.length;i++){
-			System.out.println("Lewa strona: " + ttab[i].PodajLS());
-			System.out.println("Prawa strona: " + ttab[i].PodajPS());
+			System.out.println(i+1 + ") Lewa strona: " + ttab[i].PodajLS());
+			System.out.println(i+1 + ") Prawa strona: " + ttab[i].PodajPS());
 		}
-		System.out.println("Nieterminale: ");
+		System.out.println(Parserv3.NTlines + " nieterminali: ");
 		for(int j=0;j<nttab.length;j++){
-			System.out.println("Lewa strona: " + nttab[j].PodajLS());
-			System.out.println("Prawa strona: " + nttab[j].PodajPS1() + " " + nttab[j].PodajPS2());
+			System.out.println(j+1 + ") Lewa strona: " + nttab[j].PodajLS());
+			System.out.println(j+1 + ") Prawa strona: " + nttab[j].PodajPS1() + " " + nttab[j].PodajPS2());
 		}
 	
 	}
@@ -481,6 +489,8 @@ public class Parserv3{
 		//Przydatne do debugowania
 		new Parserv3();
 		ZwrocDoScreen wynik = new ZwrocDoScreen();
+		
+		//Parserv3.WyswietlGramatyke();
 		
 		wynik=(Dzialaj("atakuj wroga"));
 		

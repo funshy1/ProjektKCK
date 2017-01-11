@@ -10,22 +10,20 @@ import com.mygdx.ingameConsole.Console;
 
 public class NPC extends Entity {
 	
-	
-
 	public NPC(String Type, int X, int Y, String sciezka, Stage stage, Console console, Parserv3 parser, int a, int b,
 			int c, int d) throws IOException {
 		super(Type, X, Y, sciezka, stage, console, parser, a, b, c, d);
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public void sayHello() {
-
+		
 		Boolean mcSaidHello = false;
 
 		int licznik = 0;
 
 		if (MainCharacterInside == true) {
+			
 			if (console.phraseEntereddlaNPC == true) {
 				console.phraseEntereddlaNPC = false;
 				for (int i = 0; i < Parserv3.ttab.length; i++) {

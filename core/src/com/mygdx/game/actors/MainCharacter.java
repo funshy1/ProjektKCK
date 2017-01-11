@@ -18,9 +18,8 @@ public class MainCharacter extends Actors {
 	public Statistics[] statistics; // tablica[4] statystyk
 	private Stage stage;
 	public boolean overlaptrue = false; // flaga do kolizji
-	Boolean CanAttack = false;
+	Boolean CanAttack = false; //czy moze zaatakowac
 	int ruch = 0;
-
 	
 	public MainCharacter(int X, int Y, String sciezka, Stage stage) {
 		super(X, Y, sciezka);
@@ -347,14 +346,6 @@ public class MainCharacter extends Actors {
 		}
 		MoveCountPixels = 64;
 	}
-
-	public void SetCanAttack(Boolean a){
-		CanAttack = a;
-	}
-			
-	public Boolean GetCanAttack(){
-		return CanAttack;
-	}
 	
 	public void updateActorBounds() {
 		bounds.set(image.getX() + 28, image.getY() + 19, 44, 56);
@@ -406,5 +397,21 @@ public class MainCharacter extends Actors {
 				Cloud2.textField.remove();
 			}
 		}, 3);
+	}
+	
+	/*
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 *																		 *
+	 * 						Podaj i ustaw prywatne atrybuty					 *
+	 * 																		 *
+	 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	 */
+	
+	public void SetCanAttack(Boolean a){
+		CanAttack = a;
+	}
+			
+	public Boolean GetCanAttack(){
+		return CanAttack;
 	}
 }
