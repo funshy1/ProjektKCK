@@ -14,27 +14,46 @@ public class Enemy extends Entity {
 		super(Type, X, Y, sciezka, stage, console, parser, a, b, c, d);
 	}
 	
-	protected Vector<String> list_of_words = new Vector<String>(); //Vector uzytych slow 
+	protected Vector<String> list_of_words = new Vector<String>(); //Vector uzytycvh slow 
 	protected String LastWordUsed;
 	protected float MaxHP = 100;
 	protected float CurrentHP = 100;
 	protected int NumberOfRepetitions = 0;
-
-	public void IsHitbyMC(){
-		if(MainCharacterInside == true){
-				for (int i = 0; i < list_of_words.size(); i++)	
+	protected int NumberOfAttacks = 0;
+	protected boolean Defeated = false;
+	
+	public void IsHitbyMC()
+	{	
+		if(MainCharacterInside == true)
+		{
+			NumberOfAttacks++;
+			list_of_words.add(LastWordUsed);
+				for (int i = 0; i < list_of_words.size()-1; i++)	
 				{
-					NumberOfRepetitions++;
-					//TU JESZCZE TRZEBA ROZBUDOWAC
-					if (LastWordUsed == list_of_words.get(i))
+					if (list_of_words.get(i).equals(list_of_words.lastElement()))
 					{
 						NumberOfRepetitions++;
 					}
 				}
-				DealBasicDamage(NumberOfRepetitions);
-				list_of_words.add(LastWordUsed);
-				NumberOfRepetitions = 0;
+			DealBasicDamage(NumberOfRepetitions);
+			NumberOfRepetitions = 0;
+		}
+		displayDamage();
+		if (CurrentHP < 0)
+		{
+			defeat();
+		}
+	}
+	
+	public void defeat()
+	{
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			this.Speak("Pokonales mnie wojowniku. Wez moje trofea i odejdz");
 	}
 	
 	public void SetUsedWord(String slowo){
@@ -44,6 +63,18 @@ public class Enemy extends Entity {
 	String GetUzyteSlowo()
 	{
 		return LastWordUsed;
+	}
+	
+	void ClearUzyteSlowo()
+	{
+		LastWordUsed = "";
+	}
+
+	public void displayDamage()
+	{
+		String temp1 = String.valueOf(CurrentHP);
+		String temp2 = String.valueOf(MaxHP);
+		this.Speak(temp1 + "/" + temp2);
 	}
 	
 	void DealBasicDamage(int RepeatedWords)	{

@@ -1,9 +1,9 @@
-#-- <<<< To jest komentarz dla parsera, puste linie te� nie s� wczytywane
+﻿#-- <<<< To jest komentarz dla parsera, puste linie też nie są wczytywane
 
 #-- Gramatyka dla chodzenia
 Z_Idz -> czasownik1 kierunek
 Z_Idz -> kierunek czasownik1
-czasownik1 -> idz
+czasownik1 -> idź
 kierunek -> spojnik1 orientacja1
 kierunek -> spojnik2 orientacja2
 kierunek -> spojnik3 orientacja3
@@ -18,10 +18,10 @@ spojnik3 -> przed
 spojnik4 -> o
 orientacja1 -> prawo
 orientacja1 -> lewo
-orientacja1 -> dol
-orientacja1 -> gore
-orientacja2 -> gory
-orientacja2 -> tylu
+orientacja1 -> dół
+orientacja1 -> górę
+orientacja2 -> góry
+orientacja2 -> tyłu
 orientacja2 -> przodu
 orientacja3 -> siebie
 
@@ -32,6 +32,39 @@ czasownik2 -> atakuj
 czasownik2 -> bij
 czasownik2 -> uderzaj
 czasownik2 -> uderz
+czasownik2 -> siekaj
+czasownik2 -> tnij
+czasownik2 -> zaatakuj
+czasownik2 -> stuknij
+czasownik2 -> walnij
+czasownik2 -> zdziel
+czasownik2 -> strzel
+czasownik2 -> palnij
+czasownik2 -> kropnij
+czasownik2 -> grzmotnij
+czasownik2 -> trzepnij
+czasownik2 -> przylej
+czasownik2 -> sieknij
+czasownik2 -> smagnij
+czasownik2 -> jebnij
+czasownik2 -> gruchnij
+czasownik2 -> buchnij
+czasownik2 -> huknij
+czasownik2 -> lupnij
+czasownik2 -> rabnij
+czasownik2 -> rypnij
+czasownik2 -> dojedz
+czasownik2 -> zasun
+czasownik2 -> przyladuj
+czasownik2 -> przydzwon
+czasownik2 -> pieprznij
+czasownik2 -> napadnij
+czasownik2 -> naskocz
+czasownik2 -> najdz
+czasownik2 -> zdziel
+czasownik2 -> strzel
+czasownik2 -> trzepnij
+czasownik2 -> pierdolnij
 przeciwnik1 -> orka
 przeciwnik1 -> wroga
 
@@ -46,18 +79,18 @@ przeciwnik1 -> wroga
 Z_Kom -> rozkaz_komunikacji przywitanie
 Z_Kom -> rozkaz_komunikacji pozegnanie
 Z_Kom -> rozkaz_komunikacji liczba_dla_parsera
-rozkaz_komunikacji -> Mow
-rozkaz_komunikacji -> mow
+rozkaz_komunikacji -> Mów
+rozkaz_komunikacji -> mów
 rozkaz_komunikacji -> Powiedz
 rozkaz_komunikacji -> powiedz
-przywitanie -> Czesc!
-przywitanie -> Czesc
-przywitanie -> czesc
+przywitanie -> Cześć!
+przywitanie -> Cześć
+przywitanie -> cześć
 przywitanie -> Hej!
 przywitanie -> Hej
 przywitanie -> hej
 przywitanie -> Witaj!
 przywitanie -> Witaj
 przywitanie -> witaj
-pozegnanie -> Zegnaj!
-pozegnanie -> Czesc
+pozegnanie -> Żegnaj!
+pozegnanie -> Cześć
