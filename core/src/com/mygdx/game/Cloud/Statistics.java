@@ -3,8 +3,8 @@ package com.mygdx.game.Cloud;
 public class Statistics extends cloud{
 	private int statistic;
 
-	public Statistics(int WIDTH, float X, float Y) {
-		super(WIDTH, X, Y);
+	public Statistics(int WIDTH, float X, float Y,float size) {
+		super(WIDTH, X, Y,size);
 		init();
 		// TODO Auto-generated constructor stub
 	}

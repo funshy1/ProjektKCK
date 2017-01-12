@@ -185,7 +185,7 @@ public class Parserv3{
 	
 	public static boolean isNumeric(String str){
 		
-		//Sprawdza czy da siê podany wyraz przeparsowac na liczbe
+		//Sprawdza czy da siÄ™ podany wyraz przeparsowac na liczbe
 	
 		NumberFormat formatter = NumberFormat.getInstance();
 		ParsePosition pos = new ParsePosition(0);
@@ -288,7 +288,7 @@ public class Parserv3{
 	
 	public static String SprawdzGramatyke(String tabliczka[], int x1, int x2){
 		
-		//Sprawdza czy dwa elementy znajduja siê w ktorejs z zasad nieterminalnych gramatyki
+		//Sprawdza czy dwa elementy znajduja siÄ™ w ktorejs z zasad nieterminalnych gramatyki
 		//Jesli tak to zwraca lewa strone tej zasady
 		
 		String ExitString = "SG";
@@ -321,8 +321,8 @@ public class Parserv3{
 			
 			//Sprawdzam czy wyraz jest liczba
 			//Jesli tak to dokonuje konwersji wyrazu z String na Int,
-			//a do tablicy, która bêdzie parsowana wpisujê "liczba",
-			//oraz puszczam metodê CheckType, która sprawdza czy wyraz "liczba" jest w gramatyce
+			//a do tablicy, ktÃ³ra bÄ™dzie parsowana wpisujÄ™ "liczba",
+			//oraz puszczam metodÄ™ CheckType, ktÃ³ra sprawdza czy wyraz "liczba" jest w gramatyce
 			//Jesli nie to sprawdzam czy wyraz jest w gramatyce,
 			
 			temp = result[i];
@@ -342,7 +342,7 @@ public class Parserv3{
 		
 		int b=0;
 		
-		//Sprawdza czy jest zdaniem, jesli nie to omija nastêpne pêtle i zwraca
+		//Sprawdza czy jest zdaniem, jesli nie to omija nastÄ™pne pÄ™tle i zwraca
 		//tablice z N-ami
 		
 		for(int i=0;i<dl_tab;i++){
@@ -404,9 +404,9 @@ public class Parserv3{
 									k_ruchu="lewo";
 								if(k_ruchu.contains("pra"))
 									k_ruchu="prawo";
-								if(k_ruchu.contains("gor"))
+								if(k_ruchu.contains("gÃ³r"))
 									k_ruchu="gora";
-								if(k_ruchu.contains("dol"))
+								if(k_ruchu.contains("dÃ³Å‚"))
 									k_ruchu="dol";
 						
 								if(czy_sa_kratki == 1){

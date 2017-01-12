@@ -361,15 +361,15 @@ public class MainCharacter extends Actors {
 
 	public void init(int X, int Y) {
 		TryBounds = new Rectangle();
-		Cloud = new cloud(50, X + 35, Y + 20);
+		Cloud = new cloud(50, X + 35, Y + 20,1);
 		statistics = new Statistics[4];
-		statistics[0] = new Statistics(10, 0, 0);
+		statistics[0] = new Statistics(10, 0, 0,(float)0.30);
 		statistics[0].textField.setMessageText(statistics[0].getStatistic());
-		statistics[1] = new Statistics(10, 0, 0);
+		statistics[1] = new Statistics(10, 0, 0,(float)0.30);
 		statistics[1].textField.setMessageText(statistics[1].getStatistic());
-		statistics[2] = new Statistics(10, 0, 0);
+		statistics[2] = new Statistics(10, 0, 0,(float)0.30);
 		statistics[2].textField.setMessageText(statistics[2].getStatistic());
-		statistics[3] = new Statistics(10, 0, 0);
+		statistics[3] = new Statistics(10, 0, 0,(float)0.30);
 		statistics[3].textField.setMessageText(statistics[3].getStatistic());
 		bounds.set(image.getX() + 32, image.getY() + 20, 32, 32);
 	}
@@ -388,7 +388,7 @@ public class MainCharacter extends Actors {
 	}
 
 	public void Speak(String text) {
-		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20);
+		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
 		Cloud2.textField.setMessageText(text);
 		stage.addActor(Cloud2.textField);
 		Timer.schedule(new Task() {

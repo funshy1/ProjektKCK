@@ -49,7 +49,7 @@ public class Console {
 	
 	
 	
-	public Console( int WIDTH , float X , float Y, int size) {
+	public Console( int WIDTH , float X , float Y, float size) {
 		bitMapFontInit(size);
 		textFieldStyleInit();
 		textFieldInit( WIDTH , X , Y);
@@ -145,7 +145,7 @@ public class Console {
 	}
 	
 
-	public void bitMapFontInit(int size) {
+	public void bitMapFontInit(float size) {
 		bitmapFont = new BitmapFont(Gdx.files.internal("Font/BIGFONT.fnt"));
 		bitmapFont.getData().setScale(size);
 	}

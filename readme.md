@@ -1,17 +1,16 @@
 Projekt na KCK
 -------------
 
-Jest to projekt zrobiony na zaliczenie przedmiotu Komunikacja Cz³owiek-Komputer. Program jest napisany w Javie z u¿yciem platformy programistycznej libGDX.
+Jest to projekt zrobiony na zaliczenie przedmiotu Komunikacja Czï¿½owiek-Komputer. Program jest napisany w Javie z uï¿½yciem platformy programistycznej libGDX.
 
 
 
 Do zrobienia
 -------------
 1. Rozwiniecie gramatyki (idz przed siebie do przeszkody)
-2. Rozbudowana walka z nieruchomym przeciwnikiem
-3. Rozwiniecie interakcji u¿ytkownika z gra -- zaprogramowanie pytan do uzytkownika, jeœli uzytkownik nie wpisa³‚ zdania, ale parser cos znalazl (cos, czyli jakas zasade nieterminalna (np. kierunek)).
-4. Druga mapa z aktorami
-5. Trzeci mapa z aktorami
+2. Rozwiniecie interakcji uï¿½ytkownika z gra -- zaprogramowanie pytan do uzytkownika, jeï¿½li uzytkownik nie wpisaï¿½ï¿½ zdania, ale parser cos znalazl (cos, czyli jakas zasade nieterminalna (np. kierunek)).
+3. Druga mapa z aktorami
+4. Trzecia mapa z aktorami
 
 
 Zrobione
@@ -20,4 +19,5 @@ Zrobione
 2. Startowy NPC.
 3. Rozmowa z startowym NPC.
 4. Nieruchomy przeciwnik
+5. Rozbudowana walka z nieruchomym przeciwnikiem
 
