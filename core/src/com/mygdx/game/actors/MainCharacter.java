@@ -32,7 +32,7 @@ public class MainCharacter extends Actors {
 		overlaptrue = false; // flage ustawiamy na nie bo glowna postac nie ma
 								// kolizji
 
-		if (gdzie.equals("góry")) { // jesli ktos wpisal do gory w konsoli
+		if (gdzie.equals("gora")) { // jesli ktos wpisal do gory w konsoli, tego nie trzeba zmieniaÄ‡ na polskie znaki!
 			Timer.schedule(new Task() { // timer + zadanie
 				@Override
 				public void run() {
@@ -86,7 +86,7 @@ public class MainCharacter extends Actors {
 			}, delay, delay, MoveCountPixels);
 		}
 
-		if (gdzie.equals("dó³")) {
+		if (gdzie.equals("dol")) { //tego teÅ¼!
 
 			Timer.schedule(new Task() {
 				@Override
