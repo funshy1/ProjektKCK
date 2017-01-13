@@ -32,7 +32,7 @@ public class MainCharacter extends Actors {
 		overlaptrue = false; // flage ustawiamy na nie bo glowna postac nie ma
 								// kolizji
 
-		if (gdzie.equals("gora")) { // jesli ktos wpisal do gory w konsoli
+		if (gdzie.equals("góry")) { // jesli ktos wpisal do gory w konsoli
 			Timer.schedule(new Task() { // timer + zadanie
 				@Override
 				public void run() {
@@ -86,7 +86,7 @@ public class MainCharacter extends Actors {
 			}, delay, delay, MoveCountPixels);
 		}
 
-		if (gdzie.equals("dol")) {
+		if (gdzie.equals("dó³")) {
 
 			Timer.schedule(new Task() {
 				@Override
