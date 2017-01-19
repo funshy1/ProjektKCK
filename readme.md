@@ -73,7 +73,7 @@ Jest to projekt zrobiony na zaliczenie przedmiotu Komunikacja Człowiek-Komputer
 - [ ] Rozwinięcie gramatyki rozmowy z Kowalem ( zapytanie o dowcip, jaki dziś dzień, jak się czuje itp. itd. - wszystkie pomysły mile widziane
 - [ ] Dodanie zapytania postaci o statystyki oraz przedmioty noszące przez nią (np. jaki mam miecz? ) 
 - [ ] Rozbudowanie Dokumentacji o podstawowe komendy które można użyc w grze 
-- [ ] 15 rozgrzewka i rozciąganie przed kodowaniem! + kubek kawy :)
+- [ ] 15 minutowa rozgrzewka i rozciąganie przed kodowaniem! + kubek kawy :)
 
 
 <br>
