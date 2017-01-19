@@ -45,19 +45,13 @@ Grafika przedstawia przeciwnika, w tym wypadku Orka, z którym przyjdzie walczy�
 <img style="width: 200px; height: 150px;" src="https://github.com/drakar1903/ProjektKCK/blob/master/core/assets/Layout/statslayout.png?raw=true"><br>
 Powyższa grafika to układ statystyk bohatera. Każde z kolorowych kółek zawiera 
 w grze liczbę odpowiedzialną za poziom konkretnej statystyki. 
+<br>
 
+# Komunikacja z bohaterem
+Ciągle rozwijamy i dopracowywujemy tą część. Jeżeli zbierze się odpowiednia ilośc materiału to opiszemu tu wszystko! :)
 
-
-
-
-
-
-
-
-
-
-Jest to projekt zrobiony na zaliczenie przedmiotu Komunikacja Człowiek-Komputer. Program jest napisany w Javie z użyciem platformy programistycznej libGDX.
-
+# Sposoby walki z przeciwnikiem
+Ciągle rozwijamy i dopracowywujemy tą część. Jeżeli zbierze się odpowiednia ilośc materiału to opiszemu tu wszystko! :)
 
 
 - - -
