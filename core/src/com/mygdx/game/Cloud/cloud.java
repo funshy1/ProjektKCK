@@ -33,7 +33,7 @@ public class cloud {  //chatbox
 		textField.setDebug(false);
 	}
 	public void bitMapFontInit(float size) {
-		bitmapFont = new BitmapFont(Gdx.files.internal("Font/BIGFONT.fnt"));
+		bitmapFont = new BitmapFont(Gdx.files.internal("Font/SMALLFONT.fnt"));
 		bitmapFont.getData().setScale(size);
 	}
 	public void setPosition(float X, float Y) {

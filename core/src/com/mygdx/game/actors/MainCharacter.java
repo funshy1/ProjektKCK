@@ -26,7 +26,7 @@ public class MainCharacter extends Actors {
 		super(X, Y, sciezka);
 		this.stage = stage;
 		init(X, Y);
-		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
+		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 75,1f);
 	}
 
 	public void move(String gdzie, AbstractButton[] CantStand, int iloscElem) {
