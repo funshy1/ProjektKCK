@@ -23,6 +23,7 @@ public abstract class Entity extends Actors {
 	protected String Type;
 	public boolean przywitanie = false;
 	public float iloscCzasuTimer = 3;
+	cloud Cloud2;
 
 	public Entity(String Type, int X, int Y, String sciezka, Stage stage, Console console, Parserv3 parser, int a,
 			int b, int c, int d) throws IOException {
@@ -36,6 +37,7 @@ public abstract class Entity extends Actors {
 		MainCharacterInside = true;
 		stage.addActor(button.button);
 		this.Type = Type;
+		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,7 +52,7 @@ public abstract class Entity extends Actors {
 
 	public void Speak(String text,float czas) {
 		iloscCzasuTimer = czas;
-		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
+		
 		Cloud2.textField.setMessageText(text);
 		stage.addActor(Cloud2.textField);
 		Timer.schedule(new Task() {

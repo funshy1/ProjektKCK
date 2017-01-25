@@ -14,6 +14,8 @@ import com.mygdx.game.parserCYK.Parserv3;
 import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
 import com.mygdx.game.actors.Enemy;
+import com.mygdx.game.actors.Enemy2;
+import com.mygdx.game.actors.Enemy3;
 
 public class TutorialScreen extends AbstractScreen {
 
@@ -33,6 +35,8 @@ public class TutorialScreen extends AbstractScreen {
 	public StartowyNPC npc1;
 	public StartowyNPC npc0;
 	public Enemy enemy1;
+	public Enemy2 enemy2;
+	public Enemy3 enemy3;
 	
 	public TutorialScreen(ProjektKCK game) throws IOException {
 		super(game);
@@ -62,12 +66,16 @@ public class TutorialScreen extends AbstractScreen {
 		npc1 = new StartowyNPC("Startowy", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
 				1600, 500, 200, 140);
 		enemy1 = new Enemy("Wrog", 1650,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
+		enemy2 = new Enemy2("Wrog2", 1950,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,1900,300, 200, 140);
+		enemy3 = new Enemy3("Wrog3", 2250,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,2200,300, 200, 140);
 		
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npc1.image);
 		stage.addActor(npc0.image);
 		stage.addActor(enemy1.image);
+		stage.addActor(enemy2.image);
+		stage.addActor(enemy3.image);
 		stage.addActor(mainCharacter.image);
 		stage.addActor(layoutconsole.image);
 		stage.addActor(console.textField);
@@ -179,6 +187,10 @@ public class TutorialScreen extends AbstractScreen {
 		npc0.rozmowa();
 		if (enemy1.Defeated == false)
 			enemy1.displayDamage();
+		if (enemy2.Defeated == false)
+			enemy2.displayDamage();
+		if (enemy3.Defeated == false)
+			enemy3.displayDamage();
 	}
 	public void CanAttackNpc(ZwrocDoScreen wynik){
 		enemy1.collisionCheck(mainCharacter.bounds);
