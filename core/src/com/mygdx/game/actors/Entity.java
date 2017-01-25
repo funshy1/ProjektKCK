@@ -37,7 +37,7 @@ public abstract class Entity extends Actors {
 		MainCharacterInside = true;
 		stage.addActor(button.button);
 		this.Type = Type;
-		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
+		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 75,1f);
 		// TODO Auto-generated constructor stub
 	}
 
