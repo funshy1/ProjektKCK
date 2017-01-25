@@ -31,6 +31,7 @@ public class TutorialScreen extends AbstractScreen {
 	
 	public Parserv3 Parser1;
 	public StartowyNPC npc1;
+	public StartowyNPC npc0;
 	public Enemy enemy1;
 	
 	public TutorialScreen(ProjektKCK game) throws IOException {
@@ -56,14 +57,16 @@ public class TutorialScreen extends AbstractScreen {
 		map2 = new Actors(0, 0, "Maps\\tutorial\\2.png");
 		console = new Console(600, 270, 25, 1);
 		mainCharacter = new MainCharacter(432, 450, "CharacterMovement\\walking e0000.png", stage);
-
+		npc0 = new StartowyNPC("Pierwszy", 560, 482, "StarterNPC\\stoppped_0001.png", this.stage, this.console, this.Parser1,
+								450, 450, 200, 140);
 		npc1 = new StartowyNPC("Startowy", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
 				1600, 500, 200, 140);
-		enemy1 = new Enemy("Wrog", 1650,350,"NPCMovement\\stopped0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
+		enemy1 = new Enemy("Wrog", 1650,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
 		
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npc1.image);
+		stage.addActor(npc0.image);
 		stage.addActor(enemy1.image);
 		stage.addActor(mainCharacter.image);
 		stage.addActor(layoutconsole.image);
@@ -171,7 +174,9 @@ public class TutorialScreen extends AbstractScreen {
 
 	public void CanTalkWithNpc() {
 		npc1.collisionCheck(mainCharacter.bounds);
+		npc0.collisionCheck(mainCharacter.bounds);
 		npc1.rozmowa();
+		npc0.rozmowa();
 		if (enemy1.Defeated == false)
 			enemy1.displayDamage();
 	}

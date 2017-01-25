@@ -50,6 +50,8 @@ public class Enemy extends Entity {
 	public void defeat()
 	{
 			this.image.remove();
+			Defeated = true;
+			
 	}
 	
 	public void SetUsedWord(String slowo){
