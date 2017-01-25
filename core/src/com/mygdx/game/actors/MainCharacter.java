@@ -20,11 +20,13 @@ public class MainCharacter extends Actors {
 	public boolean overlaptrue = false; // flaga do kolizji
 	Boolean CanAttack = false; //czy moze zaatakowac
 	int ruch = 0;
+	cloud Cloud2;
 	
 	public MainCharacter(int X, int Y, String sciezka, Stage stage) {
 		super(X, Y, sciezka);
 		this.stage = stage;
 		init(X, Y);
+		Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
 	}
 
 	public void move(String gdzie, AbstractButton[] CantStand, int iloscElem) {
@@ -388,7 +390,7 @@ public class MainCharacter extends Actors {
 	}
 
 	public void Speak(String text) {
-		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
+		
 		Cloud2.textField.setMessageText(text);
 		stage.addActor(Cloud2.textField);
 		Timer.schedule(new Task() {

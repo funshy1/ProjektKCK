@@ -30,19 +30,19 @@ public class TutorialScreen extends AbstractScreen {
 	public Actors map; // mapa danej planszy
 	public Actors map2;
 	public AbstractButton CantStand[]; // tablica w ktorej sa obiekty do kolizji
-	
+
 	public Parserv3 Parser1;
 	public StartowyNPC npc1;
 	public StartowyNPC npc0;
 	public Enemy enemy1;
 	public Enemy2 enemy2;
 	public Enemy3 enemy3;
-	
+
 	public TutorialScreen(ProjektKCK game) throws IOException {
 		super(game);
 		create();
 	}
-	
+
 	public void create() throws IOException {
 		try {
 			Parser1 = new Parserv3();
@@ -54,21 +54,24 @@ public class TutorialScreen extends AbstractScreen {
 		CantStandInit();
 		for (int i = 0; i < ilosc_elemt_w_tablicy_przeszkod; i++) {
 			stage.addActor(CantStand[i].button);
-		}		
+		}
 		layoutconsole = new Actors(0, 0, "Layout\\layoutconsole.png");
 		statslayout = new Actors(0, 668, "Layout\\statslayout.png");
 		map = new Actors(0, 0, "Maps\\tutorial\\1.jpg");
 		map2 = new Actors(0, 0, "Maps\\tutorial\\2.png");
 		console = new Console(600, 270, 25, 1);
 		mainCharacter = new MainCharacter(432, 450, "CharacterMovement\\walking e0000.png", stage);
-		npc0 = new StartowyNPC("Pierwszy", 560, 482, "StarterNPC\\stoppped_0001.png", this.stage, this.console, this.Parser1,
-								450, 450, 200, 140);
-		npc1 = new StartowyNPC("Startowy", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console, this.Parser1,
-				1600, 500, 200, 140);
-		enemy1 = new Enemy("Wrog", 1650,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,1600,300, 200, 140);
-		enemy2 = new Enemy2("Wrog2", 1950,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,1900,300, 200, 140);
-		enemy3 = new Enemy3("Wrog3", 2250,350,"SpiderEnemy\\stopped_0000.png",this.stage,this.console,this.Parser1,2200,300, 200, 140);
-		
+		npc0 = new StartowyNPC("Pierwszy", 560, 482, "StarterNPC\\stoppped_0001.png", this.stage, this.console,
+				this.Parser1, 450, 450, 200, 140);
+		npc1 = new StartowyNPC("Startowy", 1650, 560, "NPCMovement\\stopped0000.png", this.stage, this.console,
+				this.Parser1, 1600, 500, 200, 140);
+		enemy1 = new Enemy("Wrog", 1650, 350, "SpiderEnemy\\stopped_0000.png", this.stage, this.console, this.Parser1,
+				1600, 300, 200, 140);
+		enemy2 = new Enemy2("Wrog2", 1950, 350, "SpiderEnemy\\stopped_0000.png", this.stage, this.console, this.Parser1,
+				1900, 300, 200, 140);
+		enemy3 = new Enemy3("Wrog3", 2250, 350, "SpiderEnemy\\stopped_0000.png", this.stage, this.console, this.Parser1,
+				2200, 300, 200, 140);
+
 		stage.addActor(map.image);
 		stage.addActor(map2.image);
 		stage.addActor(npc1.image);
@@ -106,7 +109,7 @@ public class TutorialScreen extends AbstractScreen {
 
 			String fraza = new String();
 			fraza = console.GetText();
-			
+
 			// Tablica zwracana przez parser
 			ZwrocDoScreen wynik = new ZwrocDoScreen();
 			fraza = fraza.toLowerCase();
@@ -124,7 +127,7 @@ public class TutorialScreen extends AbstractScreen {
 			if (wynik.PodajRozmiarLista_co_zwracam() == 0) {
 				mainCharacter.Speak("Nie rozumiem Cie!");
 			} else {
-				
+
 				switch (wynik.PodajElementLista_co_zwracam(0)) {
 				case "Z_Idz":
 					// System.out.println(wynik.PodajCzy_liczba_kratek());
@@ -163,8 +166,6 @@ public class TutorialScreen extends AbstractScreen {
 
 	}
 
-
-
 	public void CantStandInit() {
 		CantStand[0] = new AbstractButton(289, 320, 32, 32);
 	}
@@ -192,13 +193,27 @@ public class TutorialScreen extends AbstractScreen {
 		if (enemy3.Defeated == false)
 			enemy3.displayDamage();
 	}
+
 	public void CanAttackNpc(ZwrocDoScreen wynik){
 		enemy1.collisionCheck(mainCharacter.bounds);
-		
+		enemy2.collisionCheck(mainCharacter.bounds);
+		enemy3.collisionCheck(mainCharacter.bounds);
 		
 			
-		if(mainCharacter.GetCanAttack() == true)
+		if(mainCharacter.GetCanAttack() == true){
+			if (enemy1.isMainCharacterInside() == true) {
 			enemy1.SetUsedWord(wynik.PodajElementLista_co_zwracam(1));
 			enemy1.IsHitbyMC();
+			}
+			if (enemy2.isMainCharacterInside() == true) {
+			enemy2.SetUsedWord(wynik.PodajElementLista_co_zwracam(1));
+			enemy2.IsHitbyMC();
+			}
+			if (enemy3.isMainCharacterInside() == true) {
+			enemy3.SetUsedWord(wynik.PodajElementLista_co_zwracam(1));
+			enemy3.IsHitbyMC();
+			}
+		}
 	}
+
 }
