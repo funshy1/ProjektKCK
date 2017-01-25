@@ -3,8 +3,6 @@ package com.mygdx.game.actors;
 import java.io.IOException;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 import com.mygdx.game.parserCYK.Parserv3;
 import com.mygdx.game.parserCYK.ZwrocDoScreen;
 import com.mygdx.ingameConsole.Console;
@@ -55,7 +53,7 @@ public class NPC extends Entity {
 					// Losuje liczbe
 					wyl = generator.nextInt(licznik);
 					
-					this.Speak(temptab[wyl]);
+					this.Speak(temptab[wyl],3);
 						
 					przywitanie = true;
 				}

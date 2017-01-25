@@ -20,10 +20,11 @@ public class Enemy extends Entity {
 	protected float CurrentHP = 100;
 	protected int NumberOfRepetitions = 0;
 	protected int NumberOfAttacks = 0;
-	protected boolean Defeated = false;
+	public boolean Defeated = false;
 	
 	public void IsHitbyMC()
 	{	
+		if (Defeated == false) {
 		if(MainCharacterInside == true)
 		{
 			NumberOfAttacks++;
@@ -43,17 +44,12 @@ public class Enemy extends Entity {
 		{
 			defeat();
 		}
+		}
 	}
 	
 	public void defeat()
 	{
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.Speak("Pokonales mnie wojowniku. Wez moje trofea i odejdz");
+			this.image.remove();
 	}
 	
 	public void SetUsedWord(String slowo){
@@ -72,9 +68,11 @@ public class Enemy extends Entity {
 
 	public void displayDamage()
 	{
+		
 		String temp1 = String.valueOf(CurrentHP);
 		String temp2 = String.valueOf(MaxHP);
-		this.Speak(temp1 + "/" + temp2);
+		this.Speak(temp1 + "/" + temp2,(float) 0.001);
+	
 	}
 	
 	void DealBasicDamage(int RepeatedWords)	{
@@ -85,15 +83,10 @@ public class Enemy extends Entity {
 			damage = (float) (damage*0.8);
 		}
 		setCurrentHP(damage);
-		System.out.println(CurrentHP);
 	}
 	
 	private void setCurrentHP(float damage) {
 		CurrentHP = CurrentHP - damage;
 	}
 
-	public void main()
-	{
-		IsHitbyMC();
-	}
 }

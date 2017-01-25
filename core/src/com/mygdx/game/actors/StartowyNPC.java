@@ -41,7 +41,7 @@ public class StartowyNPC extends NPC {
 			iloscCzasuTimer = (float)0.01;
 			czasowaZmienna++;
 			if (czasowaZmienna > 200) {
-				this.Speak("Oblicz 2+2");
+				this.Speak("Oblicz 2+2",3);
 				if (console.EnterClickedforNPC == true) {
 					rozmowa[0] = false;
 					rozmowa[1] = true;
@@ -64,10 +64,10 @@ public class StartowyNPC extends NPC {
 			if(wynik.PodajElementLista_co_zwracam(0).equals("Z_Kom") && wynik.PodajCzyLiczba() == true){
 				if (wynik.PodajLiczba()==4) {
 					//console.phraseEntereddlaNPC = false;
-					this.Speak("Dobrze!");
+					this.Speak("Dobrze!",3);
 				}
 				else {
-					this.Speak("No chyba nie umiesz liczyc! sprobuj ponownie! Ile to 2+2?!");
+					this.Speak("No chyba nie umiesz liczyc! sprobuj ponownie! Ile to 2+2?!",3);
 				}
 			}
 		}

@@ -48,8 +48,8 @@ public abstract class Entity extends Actors {
 			przywitanie = false;
 	}
 
-	public void Speak(String text) {
-		iloscCzasuTimer = 3;
+	public void Speak(String text,float czas) {
+		iloscCzasuTimer = czas;
 		cloud Cloud2 = new cloud(50, image.getX() + 35, image.getY() + 20,(float)0.33);
 		Cloud2.textField.setMessageText(text);
 		stage.addActor(Cloud2.textField);
