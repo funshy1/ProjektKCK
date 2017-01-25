@@ -14,7 +14,7 @@ Rafał Ciećwierz<br>
 Adrian Witczak<br>
 Jakub Wawrzyniak<br>
 Szymon Nedzi<br>
-Miłosz Przybysz<br>
+Miłosz Przybył<br>
 </p><br><br>
 ---------------
 
